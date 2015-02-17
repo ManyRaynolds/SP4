@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections;
 
 public class Pathfinding<State, Action>  : MonoBehaviour {
@@ -75,4 +75,4 @@ public class Pathfinding<State, Action>  : MonoBehaviour {
 			return list;
 		}
 	}
-
+*/
