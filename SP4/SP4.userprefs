@@ -1,10 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Networking.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UnitBuilding.cs">
     <Files>
-      <File FileName="Assets\Scripts\Networking.cs" Line="18" Column="18" />
-      <File FileName="Assets\Scripts\Sync.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UnitBuilding.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UnitBuilding.cs" Line="20" Column="30" />
+      <File FileName="Assets\Scripts\Networking.cs" Line="62" Column="66" />
+      <File FileName="Assets\Scripts\Game.cs" Line="16" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

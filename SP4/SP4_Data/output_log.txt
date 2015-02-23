@@ -1,75 +1,20 @@
-Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+Initialize engine version: 4.5.4f1 (e036f44c54c9)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: NVIDIA GeForce GT 540M (ID=0xdf4)
+    Renderer: NVIDIA GeForce GTX 760 (ID=0x1187)
     Vendor:   NVIDIA
-    VRAM:     1998 MB
+    VRAM:     1990 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.060 seconds
-desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+Platform assembly: D:\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+- Completed reload, in  0.041 seconds
+desktop: 1920x1080 59Hz; virtual: 3840x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\System.Core.dll (this message is harmless)
-The referenced script on this Behaviour is missing!
- 
-(Filename:  Line: 1788)
-
-unitBuildingCube(Clone) (UnityEngine.GameObject)
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
 Hosting server on 127.0.0.1 : 25167
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-The object unitBuildingCube(Clone) must be a prefab in the project view.
- 
-(Filename:  Line: 2463)
-
-The object floorCube must be a prefab in the project view.
- 
-(Filename:  Line: 2463)
-
-The object Game must be a prefab in the project view.
- 
-(Filename:  Line: 2463)
-
-The object Main Camera must be a prefab in the project view.
- 
-(Filename:  Line: 2463)
-
-The object Point light must be a prefab in the project view.
- 
-(Filename:  Line: 2463)
-
-Hosting server on 127.0.0.1 : 25167
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-The object unitBuildingCube(Clone) must be a prefab in the project view.
- 
-(Filename:  Line: 2463)
-
-The object floorCube must be a prefab in the project view.
- 
-(Filename:  Line: 2463)
-
-The object Game must be a prefab in the project view.
- 
-(Filename:  Line: 2463)
-
-The object Main Camera must be a prefab in the project view.
- 
-(Filename:  Line: 2463)
-
-The object Point light must be a prefab in the project view.
- 
-(Filename:  Line: 2463)
 

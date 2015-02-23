@@ -12,7 +12,6 @@ public class UnitBuilding : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -21,8 +20,9 @@ public class UnitBuilding : MonoBehaviour {
 		if (spawnQueue.Count > 0) {
 			spawnTimer += Time.deltaTime;
 			if (spawnTimer >= spawnQueue[0].spawnTime){
-				spawnTimer -= spawnQueue[0].spawnTime;
-				Instantiate(spawnQueue[0], this.transform.position, this.transform.rotation);
+				spawnTimer -= spawnQueue[0].spawnTime;				
+				Network.Instantiate (spawnQueue[0], this.transform.position, this.transform.rotation, 0);
+				//Instantiate(spawnQueue[0], this.transform.position, this.transform.rotation);
 				spawnQueue.RemoveAt(0);
 			}
 		}
@@ -30,14 +30,27 @@ public class UnitBuilding : MonoBehaviour {
 			spawnTimer = 0.0f;
 		}
 
-		if (selected) {
-			this.renderer.material.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);		
-		} 
-		else if (hover) {
-			this.renderer.material.color = new Color(0.5f, 1.0f, 0.5f, 1.0f);		
+		if (networkView.isMine) {
+			if (selected) {
+				this.renderer.material.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);		
+			} 
+			else if (hover) {
+				this.renderer.material.color = new Color(0.5f, 1.0f, 0.5f, 1.0f);		
+			}
+			else {
+				this.renderer.material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);	
+			}
 		}
-		else {
-			this.renderer.material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);	
+		else{
+			if (selected) {
+				this.renderer.material.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);		
+			} 
+			else if (hover) {
+				this.renderer.material.color = new Color(1.0f, 0.5f, 0.5f, 1.0f);		
+			}
+			else {
+				this.renderer.material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);	
+			}
 		}
 	}
 

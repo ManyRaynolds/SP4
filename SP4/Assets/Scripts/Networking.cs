@@ -7,11 +7,11 @@ public class Networking : MonoBehaviour {
 	public int port = 25167;
 	public int maxConnections = 10;
 
-	public 
+	public GameObject GameController;
 
 	// Use this for initialization
 	void Start () {
-	
+		Application.runInBackground = true;
 	}
 	
 	// Update is called once per frame
@@ -36,13 +36,13 @@ public class Networking : MonoBehaviour {
 			if (GUILayout.Button("Connect")){
 				print ("Connecting to " + ipAddress + " : " + port.ToString());
 				Network.Connect(ipAddress, port);
-				OnConnect ();
+				StartCoroutine(OnConnect ());
 			}
 			//host server button
 			if (GUILayout.Button("Host")){
 				print ("Hosting server on " + ipAddress + " : " + port.ToString());
 				Network.InitializeServer(maxConnections, port, false);
-				OnConnect ();
+				StartCoroutine(OnConnect ());
 			}
 		}
 		else{
@@ -51,10 +51,15 @@ public class Networking : MonoBehaviour {
 			}
 		}
 	}
-	void OnConnect(){
-		GameObject[] go = FindObjectsOfType<GameObject> ();
-		foreach(GameObject go1 in go){
-			Network.Instantiate(go1.gameObject, go1.gameObject.transform.position, go1.gameObject.transform.rotation, 0);
+	IEnumerator OnConnect(){
+		yield return new WaitForSeconds (1);
+		if (Network.peerType == NetworkPeerType.Connecting) {
+			StartCoroutine (OnConnect ());
+		} 
+		else {
+			GameObject go = GameController.GetComponent<Game>().UnitBuildingPrefabs[0];
+			GameObject go1 = Network.Instantiate(go, go.transform.position, go.transform.rotation, 0) as GameObject;
+			GameController.GetComponent<Game>().unitBuildingList.Add(go1);
 		}
 	}
 }
