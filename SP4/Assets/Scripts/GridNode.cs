@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GridNode : MonoBehaviour {
-	
+
+	public bool onlyDisplayPathGizmos;
 	public LayerMask unwalkableMask;
 	public Vector2 gridWorldSize;
 	public float nodeRadius;
@@ -18,7 +19,13 @@ public class GridNode : MonoBehaviour {
 		gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
 		CreateGrid();
 	}
-	
+
+	public int MaxSize {
+		get {
+			return gridSizeX * gridSizeY;
+		}
+	}
+
 	void CreateGrid() {
 		grid = new Node[gridSizeX,gridSizeY];
 		Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x/2 - Vector3.forward*     gridWorldSize.y/2;
@@ -32,6 +39,7 @@ public class GridNode : MonoBehaviour {
 		}
 	}
 
+	//Get the neighbour nodes and enable checking of X Y coord on the grid
 	public List<Node> GetNeighbours(Node node) {
 		List<Node> neighbours = new List<Node>();
 		for (int x = -1; x <= 1; x++) {
@@ -66,20 +74,31 @@ public class GridNode : MonoBehaviour {
 
 	void OnDrawGizmos() {
 		Gizmos.DrawWireCube(transform.position,new Vector3(gridWorldSize.x,1,gridWorldSize.y));
+
+		if (onlyDisplayPathGizmos) {
+			if (path != null) {
+				foreach (Node n in path) {
+					Gizmos.color = Color.black;
+					Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter-.1f));
+				}
+			}
+		}
+		else {
 		
-		if (grid != null) {
-			foreach (Node n in grid) {
-				Gizmos.color = (n.walkable)?Color.white:Color.red;
-				if (path != null)
-					if (path.Contains(n))
-						Gizmos.color = Color.black;
-				Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter-.1f));
+			if (grid != null) {
+				foreach (Node n in grid) {
+					Gizmos.color = (n.walkable)?Color.white:Color.red;
+					if (path != null)
+						if (path.Contains(n))
+							Gizmos.color = Color.black;
+					Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter-.1f));
+				}
 			}
 		}
 	}
 }
 
-public class Node {
+public class Node : IHeapItem<Node>{
 	
 	public bool walkable;
 	public Vector3 worldPosition;
@@ -89,6 +108,7 @@ public class Node {
 	public int gCost;
 	public int hCost;
 	public Node parent;
+	int heapIndex;
 	
 	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY) {
 		walkable = _walkable;
@@ -102,5 +122,22 @@ public class Node {
 		get {
 			return gCost + hCost;
 		}
+	}
+
+	public int HeapIndex {
+		get{
+			return heapIndex;
+		}
+		set{
+			heapIndex = value;
+		}
+	}
+
+	public int CompareTo(Node nodeToCompare) {
+		int compare = fCost.CompareTo(nodeToCompare.fCost);
+		if (compare == 0) {
+			compare = hCost.CompareTo(nodeToCompare.hCost);
+		}
+		return -compare;
 	}
 }
