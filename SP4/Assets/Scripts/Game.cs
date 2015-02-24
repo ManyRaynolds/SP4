@@ -13,9 +13,9 @@ public class Game : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameObject newUnitBuilding = Instantiate (UnitBuildingPrefabs[0]) as GameObject;
-		Debug.Log (newUnitBuilding);
-		unitBuildingList.Add (newUnitBuilding);
+		//GameObject newUnitBuilding = Instantiate (UnitBuildingPrefabs[0]) as GameObject;
+		//Debug.Log (newUnitBuilding);
+		//unitBuildingList.Add (newUnitBuilding);
 	}
 	
 	// Update is called once per frame

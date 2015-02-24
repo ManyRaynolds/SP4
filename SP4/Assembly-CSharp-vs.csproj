@@ -48,8 +48,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\Scripts\Grid.cs" />
+     <Compile Include="Assets\Scripts\Networking.cs" />
      <Compile Include="Assets\Scripts\ObjectScript.cs" />
      <Compile Include="Assets\Scripts\Pathfinding.cs" />
+     <Compile Include="Assets\Scripts\Sync.cs" />
      <Compile Include="Assets\Scripts\TileMap.cs" />
      <Compile Include="Assets\Scripts\TileSpawner.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
