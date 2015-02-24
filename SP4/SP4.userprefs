@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Pathfinder.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GridNode.cs">
     <Files>
-      <File FileName="Assets\Scripts\Pathfinder.cs" Line="39" Column="3" />
-      <File FileName="Assets\Scripts\Grid.cs" Line="39" Column="6" />
+      <File FileName="Assets\Scripts\GridNode.cs" Line="79" Column="3" />
+      <File FileName="Assets\Scripts\Pathfinder.cs" Line="36" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

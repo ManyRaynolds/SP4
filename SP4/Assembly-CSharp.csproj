@@ -46,13 +46,14 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Grid.cs" />
+     <Compile Include="Assets\Scripts\GridNode.cs" />
      <Compile Include="Assets\Scripts\MyCamera.cs" />
-     <Compile Include="Assets\Scripts\ObjectScript.cs" />
      <Compile Include="Assets\Scripts\Pathfinder.cs" />
-     <Compile Include="Assets\Scripts\Pathfinding.cs" />
-     <Compile Include="Assets\Scripts\TileMap.cs" />
-     <Compile Include="Assets\Scripts\TileSpawner.cs" />
+     <Compile Include="Assets\Scripts\Unused\Grid.cs" />
+     <Compile Include="Assets\Scripts\Unused\ObjectScript.cs" />
+     <Compile Include="Assets\Scripts\Unused\Pathfinding.cs" />
+     <Compile Include="Assets\Scripts\Unused\TileMap.cs" />
+     <Compile Include="Assets\Scripts\Unused\TileSpawner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
