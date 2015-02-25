@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent (typeof (NetworkView))]
+
 public class Networking : MonoBehaviour {
 
 	public string ipAddress = "127.0.0.1";
@@ -19,11 +21,19 @@ public class Networking : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Application.runInBackground = true;
-	
+
+		gameObject.AddComponent<NetworkView>();
+		gameObject.networkView.observed = this;
+		gameObject.networkView.stateSynchronization = NetworkStateSynchronization.ReliableDeltaCompressed;
+		gameObject.networkView.viewID = Network.AllocateViewID();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (Network.peerType == NetworkPeerType.Disconnected) {
+			chatLog.Clear();
+			currentMessage = "";
+		}
 	}
 
 	void OnGUI(){
@@ -53,6 +63,8 @@ public class Networking : MonoBehaviour {
 			if (GUI.Button(new Rect(0.0f, 120.0f, 125, 25),"Host")){
 				print ("Hosting server on " + ipAddress + " : " + port.ToString());
 				Network.InitializeServer(maxConnections, port, false);
+				ipAddress = Network.player.ipAddress;
+				StartCoroutine (SendJoinMessage ());
 				//StartCoroutine(OnConnect ());
 			}
 			GUI.EndGroup ();
@@ -64,9 +76,9 @@ public class Networking : MonoBehaviour {
 				Network.Disconnect(200);
 			}
 			//display server info
-			GUI.Label(new Rect(0.0f, 30.0f, 100, 25), "IP: " + ipAddress);
-			GUI.Label(new Rect(0.0f, 50.0f, 100, 25), "Port: " + port);
-			GUI.Label(new Rect(0.0f, 70.0f, 200, 25), "Players: " + (Network.connections.Length + 1));
+			GUI.Label(new Rect(0.0f, 30.0f, 200, 25), "IP: " + ipAddress);
+			GUI.Label(new Rect(0.0f, 45.0f, 100, 25), "Port: " + port);
+			GUI.Label(new Rect(0.0f, 60.0f, 200, 25), "Players: " + (Network.connections.Length + 1));
 
 			//chat input
 			GUI.SetNextControlName("chatfield");
@@ -75,15 +87,15 @@ public class Networking : MonoBehaviour {
 			if (GUI.Button(new Rect(205, Screen.height - 45, 50, 25), "Send")){
 				if (currentMessage.Length > 0){
 					string temp = "[" + playername + "]: " + currentMessage;
-					networkView.RPC ("Chat", RPCMode.All, temp);
+					this.networkView.RPC ("Chat", RPCMode.All, temp);
 					currentMessage = "";
 				}
 			}
 			if (Event.current.isKey && Event.current.keyCode == KeyCode.Return){ 
-				if (GUI.GetNameOfFocusedControl() == "chatfield"){				
+				if (GUI.GetNameOfFocusedControl() == "chatfield"){	
 					if (currentMessage.Length > 0){
 						string temp = "[" + playername + "]: " + currentMessage;
-						networkView.RPC ("Chat", RPCMode.All, temp);
+						this.networkView.RPC ("Chat", RPCMode.All, temp);
 						currentMessage = "";
 					}
 				}
@@ -96,7 +108,7 @@ public class Networking : MonoBehaviour {
 			int chatindex = 0;
 			foreach(string msg in chatLog){
 				++chatindex;
-				GUI.Label(new Rect(0.0f, Screen.height - 65 - 10 * (chatLog.Count - chatindex), Screen.width, 25), msg);
+				GUI.Label(new Rect(0.0f, Screen.height - 65 - 12.5f * (chatLog.Count - chatindex), Screen.width, 25), msg);
 			}
 
 			GUI.EndGroup ();
@@ -120,17 +132,17 @@ public class Networking : MonoBehaviour {
 	}
 
 	[RPC]		
-	void Chat(string message){
+	public void Chat(string message){
 		chatLog.Add (message);
 	}
 
 	IEnumerator SendJoinMessage(){
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (0.1f);
 		if (Network.peerType == NetworkPeerType.Connecting) {
 			StartCoroutine (SendJoinMessage ());
 		} 
 		else {
-			networkView.RPC ("Chat", RPCMode.All, playername + " has joined the server");
+			this.networkView.RPC ("Chat", RPCMode.All, playername + " has joined the server");
 		}
 	}
 
