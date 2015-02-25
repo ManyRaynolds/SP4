@@ -49,12 +49,18 @@
      <Compile Include="Assets\Scripts\GridNode.cs" />
      <Compile Include="Assets\Scripts\Heap.cs" />
      <Compile Include="Assets\Scripts\MyCamera.cs" />
+     <Compile Include="Assets\Scripts\PathRequest.cs" />
      <Compile Include="Assets\Scripts\Pathfinder.cs" />
+     <Compile Include="Assets\Scripts\UnitsControl.cs" />
      <Compile Include="Assets\Scripts\Unused\Grid.cs" />
      <Compile Include="Assets\Scripts\Unused\ObjectScript.cs" />
      <Compile Include="Assets\Scripts\Unused\Pathfinding.cs" />
      <Compile Include="Assets\Scripts\Unused\TileMap.cs" />
      <Compile Include="Assets\Scripts\Unused\TileSpawner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{9EFE5F5F-09A1-1EBD-8CB0-AB63D3E8460B}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
