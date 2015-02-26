@@ -9,37 +9,48 @@ public class EnemyAI : MonoBehaviour {
 		SEEK,
 		BUILDING,
 		BUILDING_DESTROY,
+		DEAD,
 		T_DEAD,
 		S_DEAD,
+		PATROL,
 	}
 
 	public Transform target;
 	public int moveSpeed;
 	public int rotationSpeed;
 
+
+
 	private Transform myTransform;
 
 	private State _state;
 	private bool _alive = true;
 
-	float MonsterSeekRange = 8; // monster range to chase
-	float MonsterAttackRange = 5;	// monster range to attack
+	float MonsterSeekRange = 8; // monster range to chase	
+	float MonsterAttackRange = 5; // monster range to attack
 
-	public PlayerAI pai;
-
+	//Player's Health
+	public GameObject player;
+	private PlayerAI pai;
+	//private GameObject enemyObject;
+		
 	//call before anything the script
 	void Awake(){
-		moveSpeed = 3;
+		moveSpeed = 5;
 		rotationSpeed = 3;	
 		myTransform = transform;
-		pai = GetComponent<PlayerAI>();
+		pai = GetComponent<PlayerAI> ();
 	}
 
 	// Use this for initialization
 	void Start () {
-		GameObject go = GameObject.FindGameObjectWithTag ("Player");
-		target = go.transform;
-		_state = State.SEEK;	//initial state
+		if (_alive) {
+			GameObject go = GameObject.FindGameObjectWithTag ("Player");
+			target = go.transform;
+			_state = State.SEEK;	//initial state
+			pai = player.GetComponent<PlayerAI> ();
+			//Debug.Log ("Player's Health: " + pai.player_health);
+		}
 	}		
 			
 	// Update is called once per frame
@@ -57,7 +68,8 @@ public class EnemyAI : MonoBehaviour {
 		////Excute FSM
 		ExecuteFSM ();
 
-		Debug.Log (_state);
+
+		
 	}
 
 	void OnCollisionEnter(Collision Col){
@@ -73,23 +85,27 @@ public class EnemyAI : MonoBehaviour {
 		else if (distance < MonsterSeekRange)	//within seek range
 			_state = State.SEEK;
 
-
-		//	Debug.Log (distance);
+		if (pai.player_health <= 0) {
+			pai.player_health = 0;
+			_state = State.DEAD;
+		}
 	}
 
 	void ExecuteFSM(){
 		if (_alive) {
 			switch(_state){
 			case State.ATTACK:{
-				Debug.Log("Enemy Attack");
+				Debug.Log(pai.player_health);
 				moveSpeed = 0;
-			//	pai.player_health;
-
+				pai.player_health -= 1;
 			}
 				//attack weijie
 				//throw skill/attack, check if skill/attack collide
 				break;
-	
+			case State.PATROL:{
+
+			}
+				break;
 			case State.SEEK:{
 
 			}
@@ -111,6 +127,11 @@ public class EnemyAI : MonoBehaviour {
 				break;
 			case State.S_DEAD:{
 
+			}
+				break;
+			case State.DEAD:{
+				//PlayerAI.Destroy(player);
+				_alive = false;
 			}
 				break;
 			}
