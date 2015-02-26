@@ -46,11 +46,31 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
      <Compile Include="Assets\Scripts\BDestroy.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\Gold.cs" />
      <Compile Include="Assets\Scripts\JDestroy.cs" />
      <Compile Include="Assets\Scripts\Units.cs" />
+=======
+     <Compile Include="Assets\Scripts\CameraMarquee.cs" />
+     <Compile Include="Assets\Scripts\GridNode.cs" />
+     <Compile Include="Assets\Scripts\Heap.cs" />
+     <Compile Include="Assets\Scripts\MyCamera.cs" />
+     <Compile Include="Assets\Scripts\PathRequest.cs" />
+     <Compile Include="Assets\Scripts\Pathfinder.cs" />
+     <Compile Include="Assets\Scripts\UnitSelect.cs" />
+     <Compile Include="Assets\Scripts\UnitsControl.cs" />
+     <Compile Include="Assets\Scripts\Unused\Grid.cs" />
+     <Compile Include="Assets\Scripts\Unused\ObjectScript.cs" />
+     <Compile Include="Assets\Scripts\Unused\Pathfinding.cs" />
+     <Compile Include="Assets\Scripts\Unused\TileMap.cs" />
+     <Compile Include="Assets\Scripts\Unused\TileSpawner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
+      <Project>{9EFE5F5F-09A1-1EBD-8CB0-AB63D3E8460B}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+>>>>>>> Ryan's_Branch
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
