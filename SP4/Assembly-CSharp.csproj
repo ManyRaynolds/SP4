@@ -46,11 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\CameraMarquee.cs" />
      <Compile Include="Assets\Scripts\GridNode.cs" />
      <Compile Include="Assets\Scripts\Heap.cs" />
      <Compile Include="Assets\Scripts\MyCamera.cs" />
      <Compile Include="Assets\Scripts\PathRequest.cs" />
      <Compile Include="Assets\Scripts\Pathfinder.cs" />
+     <Compile Include="Assets\Scripts\UnitSelect.cs" />
      <Compile Include="Assets\Scripts\UnitsControl.cs" />
      <Compile Include="Assets\Scripts\Unused\Grid.cs" />
      <Compile Include="Assets\Scripts\Unused\ObjectScript.cs" />

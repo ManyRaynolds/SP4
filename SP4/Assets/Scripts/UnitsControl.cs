@@ -7,9 +7,16 @@ public class UnitsControl : MonoBehaviour {
 	float speed = 20;
 	Vector3[] path;
 	int targetIndex;
+	ClickDetector cd;
+	public bool commanded = false;
 
 	void Start() {
-		PathRequest.RequestPath(transform.position, target.position, OnPathFound);
+		cd = FindObjectOfType<ClickDetector>();
+		if(gameObject.GetComponent<UnitSelect>().isSelected == true)
+		{
+			//Debug.Log("Hello", gameObject);
+			PathRequest.RequestPath(transform.position, target.position, OnPathFound);
+		}
 	}
 
 	public void OnPathFound(Vector3[] newpath, bool pathSuccessful) {
@@ -35,7 +42,6 @@ public class UnitsControl : MonoBehaviour {
 			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
 			yield return null;
 		}
-		targetIndex = 0;
 	}
 
 	public void OnDrawGizmos() {
@@ -52,6 +58,18 @@ public class UnitsControl : MonoBehaviour {
 				}
 			}
 
+		}
+	}
+
+	void Update() {
+		if(gameObject.GetComponent<UnitSelect>().isSelected == true)
+		{
+			//Debug.Log("Hello", gameObject);
+			if (!target.position.Equals(new Vector3(cd.clickOnWorld.x, 0, cd.clickOnWorld.y))){
+				target.position = new Vector3(cd.clickOnWorld.x, 0, cd.clickOnWorld.y);
+				PathRequest.RequestPath(transform.position, target.position, OnPathFound);
+				targetIndex = 0;
+			}
 		}
 	}
 }
