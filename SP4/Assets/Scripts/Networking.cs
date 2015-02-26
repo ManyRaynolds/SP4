@@ -137,15 +137,17 @@ public class Networking : MonoBehaviour {
 	}
 
 	IEnumerator SendJoinMessage(){
-		yield return new WaitForSeconds (0.1f);
-		if (Network.peerType == NetworkPeerType.Connecting) {
-			StartCoroutine (SendJoinMessage ());
+		yield return new WaitForSeconds (0.01f);
+		if (Network.peerType == NetworkPeerType.Server) {
+			this.networkView.RPC ("Chat", RPCMode.All, "Server started");
+		}
+		else if (Network.peerType == NetworkPeerType.Client) {
+			this.networkView.RPC ("Chat", RPCMode.All, playername + " has joined the server");
 		} 
 		else {
-			this.networkView.RPC ("Chat", RPCMode.All, playername + " has joined the server");
+			StartCoroutine (SendJoinMessage ());
 		}
 	}
-
 }
 
 

@@ -8,11 +8,31 @@ Direct3D:
 Begin MonoManager ReloadAssembly
 Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.077 seconds
+- Completed reload, in  0.078 seconds
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
+Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\System.dll (this message is harmless)
+Failed to allocate view id because no NetworkView's were available to allocate from. You should increase the minimum client NetworkViewID count.
+ 
+(Filename:  Line: 1756)
+
+Connecting to 127.0.0.1 : 25167
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+View ID AllocatedID: 1 not found during lookup. Strange behaviour may occur
+ 
+(Filename:  Line: 1681)
+
+Received state update for view id' AllocatedID: 1' but the NetworkView doesn't exist
+ 
+(Filename:  Line: 2474)
+
