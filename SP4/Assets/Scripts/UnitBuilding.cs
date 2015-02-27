@@ -12,7 +12,7 @@ public class UnitBuilding : MonoBehaviour {
 
 	public bool placing = true;
 	public bool canPlace = true;
-	public float placeBufferTime = 1.0f;
+	public float placeBufferTime = 0.1f;
 
 	public GameObject[] UnitPrefabs;
 
@@ -22,53 +22,51 @@ public class UnitBuilding : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		if (placing) {
-			gameObject.rigidbody.useGravity = false;
-
-			gameObject.collider.isTrigger = true;	
-			//make object follow mouse position
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			// create a plane at 0,0,0 whose normal points to +Y:
-			Plane hPlane = new Plane(Vector3.up, Vector3.zero);
-			// Plane.Raycast stores the distance from ray.origin to the hit point in this variable:
-			float distance = 0; 
-			// if the ray hits the plane...
-			if (hPlane.Raycast(ray, out distance)){
-				// get the hit point:
-				Vector3 temp = ray.GetPoint(distance);
-				temp.y += 1;
-				gameObject.transform.position = temp;
-			}
-			if (placeBufferTime <= 0){
-				if (canPlace && Input.GetMouseButtonUp(0)){
-					placing = false;
-					gameObject.rigidbody.useGravity = true;
-					gameObject.collider.isTrigger = false;	
-				}
-			}
-			else{
-				placeBufferTime -= Time.deltaTime;
-			}
-		}
-
-		if (spawnQueue.Count > 0) {
-			spawnTimer += Time.deltaTime;
-			if (spawnTimer >= spawnQueue[0].spawnTime){
-				spawnTimer -= spawnQueue[0].spawnTime;		
-				Vector3 temp = this.transform.position;
-				temp.x -= this.transform.lossyScale.x * 1.5f;
-				temp.z -= this.transform.lossyScale.z * 1.5f;
-				Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
-				//Instantiate(spawnQueue[0], this.transform.position, this.transform.rotation);
-				spawnQueue.RemoveAt(0);
-			}
-		}
-		else {
-			spawnTimer = 0.0f;
-		}
 
 		if (networkView.isMine) {
+			if (placing) {
+				gameObject.rigidbody.useGravity = false;
+				
+				gameObject.collider.isTrigger = true;	
+				//make object follow mouse position
+				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				// create a plane at 0,0,0 whose normal points to +Y:
+				Plane hPlane = new Plane(Vector3.up, Vector3.zero);
+				// Plane.Raycast stores the distance from ray.origin to the hit point in this variable:
+				float distance = 0; 
+				// if the ray hits the plane...
+				if (hPlane.Raycast(ray, out distance)){
+					// get the hit point:
+					Vector3 temp = ray.GetPoint(distance);
+					temp.y += 1;
+					gameObject.transform.position = temp;
+				}
+				if (placeBufferTime <= 0){
+					if (canPlace && Input.GetMouseButtonUp(0)){
+						networkView.RPC ("PlaceBuilding", RPCMode.All);
+					}
+				}
+				else{
+					placeBufferTime -= Time.deltaTime;
+				}
+			}
+			
+			if (spawnQueue.Count > 0) {
+				spawnTimer += Time.deltaTime;
+				if (spawnTimer >= spawnQueue[0].spawnTime){
+					spawnTimer -= spawnQueue[0].spawnTime;		
+					Vector3 temp = this.transform.position;
+					temp.x -= this.transform.lossyScale.x * 1.5f;
+					temp.z -= this.transform.lossyScale.z * 1.5f;
+					Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
+					//Instantiate(spawnQueue[0], this.transform.position, this.transform.rotation);
+					spawnQueue.RemoveAt(0);
+				}
+			}
+			else {
+				spawnTimer = 0.0f;
+			}
+			
 			if (placing){
 				if (canPlace) {
 					this.renderer.material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);		
@@ -87,6 +85,14 @@ public class UnitBuilding : MonoBehaviour {
 				else {
 					this.renderer.material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);	
 				}
+			}
+		}
+		else{
+			if (placing){
+				this.renderer.enabled = false;
+			}
+			else{
+				this.renderer.enabled = true;
 			}
 		}
 	}
@@ -155,6 +161,13 @@ public class UnitBuilding : MonoBehaviour {
 				}
 			}
 		}
+	}
+	
+	[RPC]		
+	public void PlaceBuilding(){
+		placing = false;
+		gameObject.rigidbody.useGravity = true;
+		gameObject.collider.isTrigger = false;	
 	}
 }
 
