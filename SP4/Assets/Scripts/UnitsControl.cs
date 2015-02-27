@@ -62,13 +62,14 @@ public class UnitsControl : MonoBehaviour {
 	}
 
 	void Update() {
-		if(gameObject.GetComponent<UnitSelect>().isSelected == true)
-		{
-			//Debug.Log("Hello", gameObject);
-			if (!target.position.Equals(new Vector3(cd.clickOnWorld.x, 0, cd.clickOnWorld.y))){
-				target.position = new Vector3(cd.clickOnWorld.x, 0, cd.clickOnWorld.y);
-				PathRequest.RequestPath(transform.position, target.position, OnPathFound);
-				targetIndex = 0;
+		if (Input.GetMouseButtonDown(1)){
+			if(gameObject.GetComponent<UnitSelect>().isSelected == true)
+			{
+				if (!target.position.Equals(new Vector3(cd.clickOnWorld.x, 0, cd.clickOnWorld.y))){
+					target.position = new Vector3(cd.clickOnWorld.x, 0, cd.clickOnWorld.y);
+					PathRequest.RequestPath(transform.position, target.position, OnPathFound);
+					targetIndex = 0;
+				}
 			}
 		}
 	}

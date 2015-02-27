@@ -24,12 +24,12 @@ public class Game : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		GameObject temp = unitBuildingList.Find(i => i.GetComponent<UnitBuilding>().selected == true);
+		/*GameObject temp = unitBuildingList.Find(i => i.GetComponent<UnitBuilding>().selected == true);
 		if (temp != null){
 			if (GUI.Button (new Rect (100, 100, 200, 100), "SPAWN")) {
 				temp.GetComponent<UnitBuilding>().AddToQueue(UnitPrefabs[0].GetComponent<Unit>());
 			}
-		}
+		}*/
 	}
 
 }

@@ -20,6 +20,10 @@ public class GridNode : MonoBehaviour {
 		CreateGrid();
 	}
 
+	void Update(){
+		CreateGrid ();
+	}
+
 	public int MaxSize {
 		get {
 			return gridSizeX * gridSizeY;

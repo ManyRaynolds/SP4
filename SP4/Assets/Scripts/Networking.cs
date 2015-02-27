@@ -10,6 +10,8 @@ public class Networking : MonoBehaviour {
 	public int port = 25167;
 	public int maxConnections = 10;
 
+	public GameObject[] UnitBuildingPrefabs;
+
 	//public GameObject GameController;
 
 	//for chatting
@@ -17,6 +19,8 @@ public class Networking : MonoBehaviour {
 	public string currentMessage = "";
 
 	public string playername = "default";
+
+	public GameObject playerObject;
 
 	// Use this for initialization
 	void Start () {
@@ -110,6 +114,10 @@ public class Networking : MonoBehaviour {
 				++chatindex;
 				GUI.Label(new Rect(0.0f, Screen.height - 65 - 12.5f * (chatLog.Count - chatindex), Screen.width, 25), msg);
 			}
+			
+			if (GUI.Button (new Rect(200.0f, 0.0f, 125, 25), "Building")){
+				Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
+			}
 
 			GUI.EndGroup ();
 		}
@@ -140,9 +148,13 @@ public class Networking : MonoBehaviour {
 		yield return new WaitForSeconds (0.01f);
 		if (Network.peerType == NetworkPeerType.Server) {
 			this.networkView.RPC ("Chat", RPCMode.All, "Server started");
+			Vector3 temp = playerObject.transform.position;
+			temp.x += 20;
+			Network.Instantiate(playerObject, temp, playerObject.transform.rotation, 0);
 		}
 		else if (Network.peerType == NetworkPeerType.Client) {
 			this.networkView.RPC ("Chat", RPCMode.All, playername + " has joined the server");
+			Network.Instantiate(playerObject, playerObject.transform.position, playerObject.transform.rotation, 0);
 		} 
 		else {
 			StartCoroutine (SendJoinMessage ());

@@ -6,13 +6,16 @@ public class UnitSelect : MonoBehaviour {
 	public bool isSelected;
 
 	private void OnSelected() {
-		isSelected = true;
-		renderer.material.color = Color.red;
-		//Debug.Log("Hello", gameObject);
+		if (networkView.isMine) {
+			isSelected = true;
+			renderer.material.color = Color.green;
+		}
 	}
 
 	private void OnUnselected() {
-		isSelected = false;
-		renderer.material.color = Color.white;
+		if (networkView.isMine) {
+			isSelected = false;
+			renderer.material.color = Color.white;
+		}
 	}
 }
