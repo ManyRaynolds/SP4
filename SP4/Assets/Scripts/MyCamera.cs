@@ -45,7 +45,7 @@ public class MyCamera : MonoBehaviour {
 		ResetCamera = Camera.main.transform.position;
 	}
 	void LateUpdate () {
-		if (Input.GetMouseButton (0)) {
+		if (Input.GetMouseButton (2)) {
 			Diference=(Camera.main.ScreenToWorldPoint (Input.mousePosition))- Camera.main.transform.position;
 			if (Drag==false){
 				Drag=true;

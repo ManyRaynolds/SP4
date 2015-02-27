@@ -3,17 +3,19 @@ using System.Collections;
  
 public class ClickDetector : MonoBehaviour
 {
-    public bool HandleLeftClick = true;
-    public bool HandleRightClick = true;
-    public bool HandleMiddleClick = false;
-    public string OnLeftClickMethodName = "OnLeftClick";
-    public string OnRightClickMethodName = "OnRightClick";
-    public string OnMiddleClickMethodName = "OnMiddleClick";
-    public LayerMask layerMask;
+	public bool HandleLeftClick = true;
+	public bool HandleRightClick = true;
+	public bool HandleMiddleClick = false;
+	public string OnLeftClickMethodName = "OnLeftClick";
+	public string OnRightClickMethodName = "OnRightClick";
+	public string OnMiddleClickMethodName = "OnMiddleClick";
+	public LayerMask layerMask;
  
-    void Update()
-    {
-        GameObject clickedGmObj = null;
+	public Vector2 clickOnWorld;
+
+	void Update()
+	{
+	GameObject clickedGmObj = null;
         bool clickedGmObjAcquired = false;
  
         // Left click
@@ -32,6 +34,18 @@ public class ClickDetector : MonoBehaviour
         // Right click
         if (HandleRightClick && Input.GetMouseButtonDown(1))
         {
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			// create a plane at 0,0,0 whose normal points to +Y:
+			Plane hPlane = new Plane(Vector3.up, Vector3.zero);
+			// Plane.Raycast stores the distance from ray.origin to the hit point in this variable:
+			float distance = 0; 
+			// if the ray hits the plane...
+			if (hPlane.Raycast(ray, out distance)){
+				// get the hit point:
+				clickOnWorld.x = ray.GetPoint(distance).x;
+				clickOnWorld.y = ray.GetPoint(distance).z;
+			}
+
             if (!clickedGmObjAcquired)
             {
                 clickedGmObj = GetClickedGameObject();
@@ -95,5 +109,20 @@ public class ClickDetector : MonoBehaviour
             return hit.transform.gameObject;
         else
             return null;
+
+		/*
+ 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			// create a plane at 0,0,0 whose normal points to +Y:
+			Plane hPlane = new Plane(Vector3.up, Vector3.zero);
+			// Plane.Raycast stores the distance from ray.origin to the hit point in this variable:
+			float distance = 0; 
+			// if the ray hits the plane...
+			if (hPlane.Raycast(ray, out distance)){
+				// get the hit point:
+				clickOnWorld.x = ray.GetPoint(distance).x;
+				clickOnWorld.y = ray.GetPoint(distance).z;
+			}
+		 */
+
     }
 }
