@@ -14,41 +14,40 @@ public class EnemyAI : MonoBehaviour {
 		S_DEAD,
 		PATROL,
 	}
-
-	public Transform target;
 	public int moveSpeed;
 	public int rotationSpeed;
 
-
-
+	public Transform target;
 	private Transform myTransform;
+
+	private GameObject unit;
+	private Units u;
 
 	private State _state;
 	private bool _alive = true;
 
 	float MonsterSeekRange = 8; // monster range to chase	
 	float MonsterAttackRange = 5; // monster range to attack
-
-	//Player's Health
-	public GameObject player;
-	private PlayerAI pai;
-	//private GameObject enemyObject;
 		
 	//call before anything the script
 	void Awake(){
-		moveSpeed = 5;
-		rotationSpeed = 3;	
+		//moveSpeed = 5;
+		//rotationSpeed = 3;	0005oo
 		myTransform = transform;
-		pai = GetComponent<PlayerAI> ();
+		u = GetComponent<Units> ();
 	}
 
 	// Use this for initialization
 	void Start () {
 		if (_alive) {
-			GameObject go = GameObject.FindGameObjectWithTag ("Player");
+			GameObject go = GameObject.FindGameObjectWithTag ("JHuman");
+			//GameObject go2 = GameObject.FindGameObjectWithTag ("BHuman");
 			target = go.transform;
+			//target = go2.transform;
+
+
 			_state = State.SEEK;	//initial state
-			pai = player.GetComponent<PlayerAI> ();
+			//pai = player.GetComponent<PlayerAI> ();
 			//Debug.Log ("Player's Health: " + pai.player_health);
 		}
 	}		
@@ -58,18 +57,15 @@ public class EnemyAI : MonoBehaviour {
 		Debug.DrawLine (target.position, myTransform.position, Color.red);
 
 		//Look at Player
-		myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), rotationSpeed * Time.deltaTime);
+		myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(target.position - myTransform.position), u.rot_speed * Time.deltaTime);
 	
 		//Move toward Player
-		myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
+		myTransform.position += myTransform.forward * u.move_speed * Time.deltaTime;
 
 		////Update FSM
 		UpdateFSM ();
 		////Excute FSM
 		ExecuteFSM ();
-
-
-		
 	}
 
 	void OnCollisionEnter(Collision Col){
@@ -85,19 +81,19 @@ public class EnemyAI : MonoBehaviour {
 		else if (distance < MonsterSeekRange)	//within seek range
 			_state = State.SEEK;
 
-		if (pai.player_health <= 0) {
-			pai.player_health = 0;
-			_state = State.DEAD;
-		}
+		//if (pai.player_health <= 0) {
+		//	pai.player_health = 0;
+		//	_state = State.DEAD;
+		//}
 	}
 
 	void ExecuteFSM(){
 		if (_alive) {
 			switch(_state){
 			case State.ATTACK:{
-				Debug.Log(pai.player_health);
-				moveSpeed = 0;
-				pai.player_health -= 1;
+				//Debug.Log(pai.player_health);
+				//u.move_speed 	= 0;
+				//pai.player_health -= 1;
 			}
 				//attack weijie
 				//throw skill/attack, check if skill/attack collide

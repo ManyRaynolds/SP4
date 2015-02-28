@@ -34,7 +34,7 @@ public class Units : MonoBehaviour
 	
 	public GameObject j_unit;
 	public GameObject b_unit;
-	
+
 	//public BritishUnit ba_unit;
 	//public JapanUnit ja_unit;
 	
@@ -49,14 +49,14 @@ public class Units : MonoBehaviour
 	
 	//other stuff
 	void Awake()
-	{
-		//ba_unit = b_unit.GetComponent<BritishUnit> ();
-		//ja_unit = j_unit.GetComponent<JapanUnit> ();
+	{	
+
 	}
 	
 	// Use this for initialization
 	void Start () 
 	{
+			
 		//other stuff
 		direction.x = 1;
 		rtime = Time.time;
@@ -64,17 +64,20 @@ public class Units : MonoBehaviour
 		hptext.guiText.text = "Health: " + health;
 		Vector3 temp = camera1.WorldToViewportPoint (transform.position + new Vector3(0f,1f,0f));
 		hptext.transform.position = new Vector3(temp.x, temp.y);
-		
+
 		state = State.MOVE;
 		
 		health = max_health;
+
+
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		Debug.Log ("Current State: " + state);
-		
+		//Debug.Log ("Current State: " + state);
+
+
 		UpdateFSM ();
 		ExecuteFSM ();
 		
@@ -82,7 +85,7 @@ public class Units : MonoBehaviour
 		hptext.guiText.text = "Health: " + health;
 		Vector3 temp = camera1.WorldToViewportPoint (transform.position + new Vector3(0f,1.1f,0f));
 		hptext.transform.position = new Vector3(temp.x, temp.y);
-		
+	
 		GameObject[] allObjects = UnityEngine.GameObject.FindObjectsOfType<GameObject>() ;
 		if(tag == "BTank" || tag == "BHuman")
 		{
