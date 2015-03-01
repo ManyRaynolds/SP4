@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class UnitsControl : MonoBehaviour {
 
@@ -9,9 +10,15 @@ public class UnitsControl : MonoBehaviour {
 	int targetIndex;
 	ClickDetector cd;
 	public bool commanded = false;
+	public LayerMask EnemyMask;
+	bool NotAttackable;
+	public List<GameObject> UnSelectableUnits;
+	public List<GameObject> list;
+	public Building myBuilding;
 
 	void Start() {
 		cd = FindObjectOfType<ClickDetector>();
+		myBuilding = FindObjectOfType<Building>();
 		if(gameObject.GetComponent<UnitSelect>().isSelected == true)
 		{
 			//Debug.Log("Hello", gameObject);
@@ -62,6 +69,7 @@ public class UnitsControl : MonoBehaviour {
 	}
 
 	void Update() {
+		//This is where i attack
 		if (Input.GetMouseButtonDown(1)){
 			if(gameObject.GetComponent<UnitSelect>().isSelected == true)
 			{
@@ -71,6 +79,30 @@ public class UnitsControl : MonoBehaviour {
 					targetIndex = 0;
 				}
 			}
+
+			UnSelectableUnits = new List<GameObject>(GameObject.FindGameObjectsWithTag("UnSelectableUnit"));
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
+
+			if (Physics.Raycast(ray, out hit, Mathf.Infinity, EnemyMask))
+			{
+				//UnSelectableUnits.Remove(hit.transform.gameObject);
+				//hit.transform.gameObject.SendMessage("OnSelected",SendMessageOptions.DontRequireReceiver);
+				//can add type checking here
+				//if (type == Building)
+				HitBuilding();
+				//if (type == Unit)
+				//HitUnit();
+			}
 		}
 	}
+
+	public void HitBuilding() {
+		myBuilding.SendDamage(20);
+	}
+
+	public void HitUnit() {
+
+	}
+
 }
