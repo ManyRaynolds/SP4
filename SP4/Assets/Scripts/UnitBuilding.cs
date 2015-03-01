@@ -12,7 +12,7 @@ public class UnitBuilding : Building {
 
 	public bool placing = true;
 	public bool canPlace = true;
-	public float placeBufferTime = 0.1f;
+	public float placeBufferTime = 0.01f;
 
 	public GameObject[] UnitPrefabs;
 
