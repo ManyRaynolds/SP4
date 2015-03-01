@@ -10,9 +10,8 @@ public class ResourceBuilding : Building {
 	
 	// Update is called once per frame
 	void Update () {
-		if (health <= 0 && !destroyed) {
-			destroyed = true;
-			Instantiate(destroyedPartSys, this.transform.position, destroyedPartSys.transform.rotation);
-		}
+
+		UpdateBuilding ();
+
 	}
 }
