@@ -46,14 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Script\CollisionTest.cs" />
-     <Compile Include="Assets\Script\EnemyAI.cs" />
-     <Compile Include="Assets\Script\EnemyAI_Patrol.cs" />
-     <Compile Include="Assets\Script\ObjectDestroy.cs" />
-     <Compile Include="Assets\Script\PlayerAI.cs" />
-     <Compile Include="Assets\Script\Shooting.cs" />
-     <Compile Include="Assets\Script\Units.cs" />
-     <Compile Include="Assets\Script\test_grid.cs" />
      <Compile Include="Assets\Scripts\BaseBuilding.cs" />
      <Compile Include="Assets\Scripts\Building.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
@@ -80,6 +72,14 @@
      <Compile Include="Assets\Scripts\Unused\Sync.cs" />
      <Compile Include="Assets\Scripts\Unused\TileMap.cs" />
      <Compile Include="Assets\Scripts\Unused\TileSpawner.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\CollisionTest.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\EnemyAI.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\EnemyAI_Patrol.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\ObjectDestroy.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\PlayerAI.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\Shooting.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\Units.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\test_grid.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
