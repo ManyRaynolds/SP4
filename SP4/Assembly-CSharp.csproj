@@ -46,14 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Script\Bullet.cs" />
      <Compile Include="Assets\Script\CollisionTest.cs" />
      <Compile Include="Assets\Script\EnemyAI.cs" />
      <Compile Include="Assets\Script\EnemyAI_Patrol.cs" />
      <Compile Include="Assets\Script\ObjectDestroy.cs" />
      <Compile Include="Assets\Script\PlayerAI.cs" />
      <Compile Include="Assets\Script\Shooting.cs" />
-     <Compile Include="Assets\Script\Units.cs" />
      <Compile Include="Assets\Script\test_grid.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\CameraMarquee.cs" />

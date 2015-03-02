@@ -9,17 +9,9 @@ public class LoginMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 //		url = "127.0.0.1";
 		url = Network.player.ipAddress;
-=======
-		url = "127.0.0.1";
->>>>>>> 56d2a76de522223448b8882592754fff06503730
-=======
-		url = "127.0.0.1";
->>>>>>> 56d2a76de522223448b8882592754fff06503730
 	//	loginURL = "http://" + url + "/login.php";
 
 	}
@@ -34,13 +26,6 @@ public class LoginMenu : MonoBehaviour {
 	string label = "";
 	bool buttonpress = false;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 56d2a76de522223448b8882592754fff06503730
-=======
->>>>>>> 56d2a76de522223448b8882592754fff06503730
 	void OnGUI()
 	{
 		if(!buttonpress)
@@ -75,16 +60,8 @@ public class LoginMenu : MonoBehaviour {
 
 		if(GUI.Button (new Rect (Screen.width/100*28, Screen.height/100*33, Screen.width/100*14, Screen.width/100*5), "Register"))
 		{
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 			Initiate.Fade("Registration", Color.black, 0.5f);
-=======
-			Initiate.Fade("LoginMenu", Color.black, 0.5f);
->>>>>>> 56d2a76de522223448b8882592754fff06503730
-=======
-			Initiate.Fade("LoginMenu", Color.black, 0.5f);
->>>>>>> 56d2a76de522223448b8882592754fff06503730
-			//Debug.Log;
 			buttonpress = true;
 		}
 
@@ -114,17 +91,7 @@ public class LoginMenu : MonoBehaviour {
 				break;
 			case 1: label = "Successfully logged in";
 				buttonpress = true;
-<<<<<<< HEAD
-<<<<<<< HEAD
 				Initiate.Fade ("Grid",Color.black, 0.5f);
-=======
-				Initiate.Fade ("CreateGame",Color.black, 0.5f);
-
->>>>>>> 56d2a76de522223448b8882592754fff06503730
-=======
-				Initiate.Fade ("CreateGame",Color.black, 0.5f);
-
->>>>>>> 56d2a76de522223448b8882592754fff06503730
 				break;
 			default: label = "Invalid Username / Password";
 				break;
