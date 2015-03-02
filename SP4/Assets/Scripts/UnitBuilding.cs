@@ -61,16 +61,18 @@ public class UnitBuilding : Building {
 	
 	void OnGUI(){
 		//GameObject temp = unitBuildingList.Find(i => i.GetComponent<UnitBuilding>().selected == true);
-		if (selected == true){
-			if (GUI.Button (new Rect (100, 100, 200, 100), "SPAWN")) {
-				AddToQueue(UnitPrefabs[0].GetComponent<Unit>());
-			}
-			else{
-				if (!hover){
-					Event e = Event.current;
-					if (e.type == EventType.MouseUp){
-						if (!new Rect(100, 100, 200, 100).Contains(e.mousePosition)){
-							selected = false;
+		if (networkView.isMine) {
+			if (selected == true){
+				if (GUI.Button (new Rect (100, 100, 200, 100), "SPAWN")) {
+					AddToQueue(UnitPrefabs[0].GetComponent<Unit>());
+				}
+				else{
+					if (!hover){
+						Event e = Event.current;
+						if (e.type == EventType.MouseUp){
+							if (!new Rect(100, 100, 200, 100).Contains(e.mousePosition)){
+								selected = false;
+							}
 						}
 					}
 				}

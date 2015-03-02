@@ -31,32 +31,34 @@ public class Building : MonoBehaviour {
 			destroyed = true;
 			Instantiate(destroyedPartSys, this.transform.position, destroyedPartSys.transform.rotation);
 		}
-		if (placing) {
-			gameObject.rigidbody.useGravity = false;
-			
-			gameObject.collider.isTrigger = true;	
-			//make object follow mouse position
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			// create a plane at 0,0,0 whose normal points to +Y:
-			Plane hPlane = new Plane(Vector3.up, Vector3.zero);
-			// Plane.Raycast stores the distance from ray.origin to the hit point in this variable:
-			float distance = 0; 
-			// if the ray hits the plane...
-			if (hPlane.Raycast(ray, out distance)){
-				// get the hit point:
-				Vector3 temp = ray.GetPoint(distance);
-				temp.y += 1;
-				gameObject.transform.position = temp;
-			}
-			if (placeBufferTime <= 0){
-				if (canPlace && Input.GetMouseButtonUp(0)){
-					networkView.RPC ("PlaceBuilding", RPCMode.All);
+
+		if (networkView.isMine) {
+			if (placing) {
+				gameObject.rigidbody.useGravity = false;
+				
+				gameObject.collider.isTrigger = true;	
+				//make object follow mouse position
+				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				// create a plane at 0,0,0 whose normal points to +Y:
+				Plane hPlane = new Plane(Vector3.up, Vector3.zero);
+				// Plane.Raycast stores the distance from ray.origin to the hit point in this variable:
+				float distance = 0; 
+				// if the ray hits the plane...
+				if (hPlane.Raycast(ray, out distance)){
+					// get the hit point:
+					Vector3 temp = ray.GetPoint(distance);
+					temp.y += 1;
+					gameObject.transform.position = temp;
+				}
+				if (placeBufferTime <= 0){
+					if (canPlace && Input.GetMouseButtonUp(0)){
+						networkView.RPC ("PlaceBuilding", RPCMode.All);
+					}
+				}
+				else{
+					placeBufferTime -= Time.deltaTime;
 				}
 			}
-			else{
-				placeBufferTime -= Time.deltaTime;
-			}
-		}
 		if (!destroyed) {
 			if (networkView.isMine){					
 				if (placing){
@@ -80,15 +82,30 @@ public class Building : MonoBehaviour {
 				}
 			}
 			else{
-				if (placing){
-					this.enabled = false;
+			}
+		}
+	}
+	else{
+		if (placing){
+			this.enabled = false;
+		}
+		else{
+			this.enabled = true;
+		}
+		if (!destroyed) {
+				if (selected) {
+					this.renderer.material.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);		
+				} 
+				else if (hover) {
+					this.renderer.material.color = new Color(1.0f, 0.5f, 0.5f, 1.0f);		
 				}
-				else{
-					this.enabled = true;
+				else {
+					this.renderer.material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);	
 				}
 			}
 		}
 	}
+
 	
 	void OnMouseEnter(){
 		if (!destroyed && !placing){
@@ -134,5 +151,6 @@ public class Building : MonoBehaviour {
 		placing = false;
 		gameObject.rigidbody.useGravity = true;
 		gameObject.collider.isTrigger = false;	
+		this.enabled = true;
 	}
 }
