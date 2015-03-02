@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Units : MonoBehaviour 
 {
+	public Transform Target;
 	public float spawnTime;
 	
 	public float health;
@@ -118,6 +119,7 @@ public class Units : MonoBehaviour
 	
 	void UpdateFSM()
 	{
+
 		switch (state) 
 		{
 		case State.IDLE:
@@ -233,10 +235,10 @@ public class Units : MonoBehaviour
 			
 			else if (gameObject.tag == "BHuman")
 			{
-				Vector3 pos = transform.position;
-				pos.x += move_speed;
-				transform.position = pos;
-			}
+//				Vector3 pos = transform.position;
+//				pos.x += move_speed;
+//				transform.position = pos;
+			}	
 			
 			else if (gameObject.tag == "JTank")
 			{
@@ -248,9 +250,9 @@ public class Units : MonoBehaviour
 			
 			else if (gameObject.tag == "JHuman")
 			{
-				Vector3 pos = j_unit.transform.position;
-				pos.x -= move_speed;
-				j_unit.transform.position = pos;
+//				Vector3 pos = j_unit.transform.position;
+//				pos.x -= move_speed;
+//				j_unit.transform.position = pos;
 			}
 		}
 			break;
