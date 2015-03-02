@@ -61,9 +61,9 @@ public class Units : MonoBehaviour
 		direction.x = 1;
 		rtime = Time.time;
 		
-		hptext.guiText.text = "Health: " + health;
-		Vector3 temp = camera1.WorldToViewportPoint (transform.position + new Vector3(0f,1f,0f));
-		hptext.transform.position = new Vector3(temp.x, temp.y);
+		//hptext.guiText.text = "Health: " + health;
+		//Vector3 temp = camera1.WorldToViewportPoint (transform.position + new Vector3(0f,1f,0f));
+		//hptext.transform.position = new Vector3(temp.x, temp.y);
 		
 		state = State.MOVE;
 
@@ -79,9 +79,9 @@ public class Units : MonoBehaviour
 		ExecuteFSM ();
 
 		//other stuff
-		hptext.guiText.text = "Health: " + health;
-		Vector3 temp = camera1.WorldToViewportPoint (transform.position + new Vector3(0f,1.1f,0f));
-		hptext.transform.position = new Vector3(temp.x, temp.y);
+		//hptext.guiText.text = "Health: " + health;
+		//Vector3 temp = camera1.WorldToViewportPoint (transform.position + new Vector3(0f,1.1f,0f));
+		//hptext.transform.position = new Vector3(temp.x, temp.y);
 	
 		GameObject[] allObjects = UnityEngine.GameObject.FindObjectsOfType<GameObject>() ;
 		if(tag == "BTank" || tag == "BHuman")
@@ -134,36 +134,56 @@ public class Units : MonoBehaviour
 				}
 
 				//other stuff
-				if (gameObject.tag == "BTank") 
+				if (gameObject.layer == LayerMask.NameToLayer("BritB"))
 				{
+				Debug.Log ("britb");
 					if ((transform.position - j_unit.transform.position).sqrMagnitude < 40) 
 					{
 						state = State.ATTACK;
 					}
+					else 
+					{
+					transform.position = Vector3.MoveTowards(transform.position, j_unit.transform.position, Time.deltaTime);
+					}
 				}
 
-				else if (gameObject.tag == "BHuman") 
+				else if (gameObject.layer == LayerMask.NameToLayer("Brit")) 
 				{
+				Debug.Log ("brit");
 					if ((transform.position - j_unit.transform.position).sqrMagnitude < 5) 
 					{
 						state = State.ATTACK;
 					}
+					else 
+					{
+					transform.position = Vector3.MoveTowards(transform.position, j_unit.transform.position, Time.deltaTime);
+					}
 				}
 
-				else if (gameObject.tag == "JTank" ) 
+				else if (gameObject.layer == LayerMask.NameToLayer("JapB") ) 
 				{
+				Debug.Log("JAP");
 					if ((transform.position - b_unit.transform.position).sqrMagnitude < 40) 
 					{
 						state = State.ATTACK;
 
 					}
+					else 
+					{
+						transform.position = Vector3.MoveTowards(transform.position, b_unit.transform.position, Time.deltaTime);
+					}
 				}
 				
-				else if (gameObject.tag == "JHuman") 
+			else if (gameObject.layer == LayerMask.NameToLayer("Jap")) 
 				{
+				Debug.Log ("jap");
 					if ((transform.position - b_unit.transform.position).sqrMagnitude < 5) 
 					{
 						state = State.ATTACK;
+					}
+					else 
+					{
+					transform.position = Vector3.MoveTowards(transform.position, b_unit.transform.position, Time.deltaTime);
 					}
 				}
 			}
@@ -251,7 +271,7 @@ public class Units : MonoBehaviour
 
 			case State.ATTACK:
 			{
-				if (gameObject.tag == "BTank" && Bullet != null)
+				if (gameObject.tag == "BTank" )
 				{
 					/*Vector3 bulletpos = Bullet.transform.position;
 					bulletpos.x += 0.05f;
@@ -268,11 +288,12 @@ public class Units : MonoBehaviour
 					}
 				}
 						
-				else if (gameObject.tag == "BHuman" && j_unit != null )
+				else if (gameObject.tag == "BHuman")
 				{
 					if (Time.time - rtime > 1.0f) 
 					{
-						j_unit.GetComponent<Units>().health -= damage; 
+						j_unit.GetComponent<Units>().health -= damage;
+						Debug.Log ("Japan Unit Hp: " + j_unit.GetComponent<Units>().health);
 						rtime = Time.time;
 					}
 					
@@ -283,7 +304,7 @@ public class Units : MonoBehaviour
 					}
 				}
 				
-				if (gameObject.tag == "JTank"  && Bullet != null)
+				if (gameObject.tag == "JTank")
 				{
 					attack_timer += Time.deltaTime;
 					
@@ -296,7 +317,7 @@ public class Units : MonoBehaviour
 				}
 				}
 			
-				else if (gameObject.tag == "JHuman" && b_unit != null )
+				else if (gameObject.tag == "JHuman")
 				{
 					if (Time.time - rtime > 1.0f) 
 					{
@@ -345,31 +366,3 @@ public class Units : MonoBehaviour
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
