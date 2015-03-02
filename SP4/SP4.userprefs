@@ -1,35 +1,11 @@
 ﻿<Properties>
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BaseBuilding.cs">
-=======
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Networking.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UnitBuilding.cs">
     <Files>
-      <File FileName="Assets\Scripts\MainMenu\LoginMenu.cs" Line="94" Column="46" />
-      <File FileName="Assets\Scripts\Bullet.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Units.cs" Line="4" Column="16" />
-      <File FileName="Assets\Scripts\MainMenu\JoinCreate.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Networking.cs" Line="111" Column="5" />
-      <File FileName="Assets\Scripts\Unused\Game.cs" Line="8" Column="34" />
-      <File FileName="Assets\Scripts\GridNode.cs" Line="27" Column="5" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Unit.cs">
->>>>>>> ef1d0c9f263a85b78f87951ade7322b7dd9f0012
-    <Files>
-      <File FileName="Assets\Scripts\Building.cs" Line="14" Column="2" />
-      <File FileName="Assets\Scripts\BaseBuilding.cs" Line="22" Column="6" />
-      <File FileName="Assets\Scripts\UnitBuilding.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ResourceBuilding.cs" Line="1" Column="1" />
-<<<<<<< HEAD
-=======
-      <File FileName="Assets\Scripts\UnitSelect.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UnitsControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CameraMarquee.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Unit.cs" Line="10" Column="43" />
->>>>>>> 5fd0f710e1692aa2079e1437cceebbd0adbe7a9a
->>>>>>> ef1d0c9f263a85b78f87951ade7322b7dd9f0012
+      <File FileName="Assets\Scripts\UnitBuilding.cs" Line="39" Column="4" />
+      <File FileName="Assets\Scripts\Building.cs" Line="133" Column="1" />
+      <File FileName="Assets\Scripts\BaseBuilding.cs" Line="38" Column="6" />
+      <File FileName="Assets\Scripts\ResourceBuilding.cs" Line="18" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
