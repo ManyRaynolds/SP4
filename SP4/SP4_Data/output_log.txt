@@ -1,23 +1,25 @@
-Initialize engine version: 4.5.4f1 (e036f44c54c9)
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: NVIDIA GeForce GTX 760 (ID=0x1187)
+    Renderer: NVIDIA GeForce GT 540M (ID=0xdf4)
     Vendor:   NVIDIA
-    VRAM:     1990 MB
+    VRAM:     1998 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: D:\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading D:\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: D:\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
-Loading D:\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
-Platform assembly: D:\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading D:\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.035 seconds
-desktop: 1920x1080 59Hz; virtual: 3840x1080 at 0,0
+Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.051 seconds
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-Platform assembly: D:\Desktop\SP4\SP4\SP4_Data\Managed\System.dll (this message is harmless)
-Platform assembly: D:\Desktop\SP4\SP4\SP4_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\user\Desktop\SP4\SP4\SP4_Data\Managed\System.dll (this message is harmless)
 Failed to allocate view id because no NetworkView's were available to allocate from. You should increase the minimum client NetworkViewID count.
  
 (Filename:  Line: 1756)
@@ -26,11 +28,47 @@ Connecting to 127.0.0.1 : 25167
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-View ID AllocatedID: 3 not found during lookup. Strange behaviour may occur
+View ID AllocatedID: 2 not found during lookup. Strange behaviour may occur
  
 (Filename:  Line: 1681)
 
-Received state update for view id' AllocatedID: 3' but the NetworkView doesn't exist
+Received state update for view id' AllocatedID: 2' but the NetworkView doesn't exist
  
 (Filename:  Line: 2474)
+
+Path found: 6 ms
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Path found: 1 ms
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Path found: 2 ms
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+The server has disconnected from the client. Most likely the server has shut down.
+ 
+(Filename:  Line: 745)
+
+Path found: 0 ms
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Path found: 0 ms
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Path found: 2 ms
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Path found: 4 ms
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Path found: 1 ms
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 

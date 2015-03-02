@@ -10,6 +10,7 @@ public class Networking : MonoBehaviour {
 	public int port = 25167;
 	public int maxConnections = 10;
 
+	public GameObject[] UnitPrefabs;
 	public GameObject[] UnitBuildingPrefabs;
 
 	//public GameObject GameController;
@@ -118,6 +119,9 @@ public class Networking : MonoBehaviour {
 			if (GUI.Button (new Rect(200.0f, 0.0f, 125, 25), "Building")){
 				Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
 			}
+//			if (GUI.Button (new Rect(200.0f, 0.0f, 125, 25), "Units")){
+//				Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
+//			}
 
 			GUI.EndGroup ();
 		}
