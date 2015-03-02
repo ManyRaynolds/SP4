@@ -25,8 +25,8 @@ public class UnitBuilding : Building {
 					if (spawnTimer >= spawnQueue[0].spawnTime){
 						spawnTimer -= spawnQueue[0].spawnTime;		
 						Vector3 temp = this.transform.position;
-						temp.x -= this.transform.lossyScale.x * 1.5f;
-						temp.z -= this.transform.lossyScale.z * 1.5f;
+						temp.x -= 0;
+						temp.z -= 4;
 						Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
 						//Instantiate(spawnQueue[0], this.transform.position, this.transform.rotation);
 						spawnQueue.RemoveAt(0);
