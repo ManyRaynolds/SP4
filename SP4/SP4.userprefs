@@ -1,17 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Unit.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\user\Desktop\SP4\SP4\Assets\Scripts\WJ &amp; Zoe's Scripts\EnemyAI.cs">
     <Files>
-      <File FileName="Assets\Scripts\UnitsManager.cs" Line="77" Column="4" />
-      <File FileName="Assets\Scripts\GridNode.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UnitBuilding.cs" Line="112" Column="1" />
       <File FileName="Assets\Scripts\Building.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\BaseBuilding.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UnitBuilding.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ResourceBuilding.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UnitSelect.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UnitsControl.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CameraMarquee.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Unit.cs" Line="10" Column="43" />
+      <File FileName="Assets\Scripts\Unit.cs" Line="17" Column="39" />
+      <File FileName="c:\Users\user\Desktop\SP4\SP4\Assets\Scripts\WJ &amp; Zoe's Scripts\EnemyAI.cs" Line="59" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
