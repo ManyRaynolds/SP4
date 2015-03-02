@@ -23,10 +23,23 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+<<<<<<< HEAD
 																																																																		GlobalSection(MonoDevelopProperties) = preSolution
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+																																																			GlobalSection(MonoDevelopProperties) = preSolution
+=======
+																																																																			GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> 61a92395382e8d81906b3b20c336c747456b452b
+=======
+																																																																		GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> parent of 5fd0f71... meh.
 =======
 																																																																GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> 4c8fc868ab163767536d8312330be88fe39e7dec
+>>>>>>> 5fd0f710e1692aa2079e1437cceebbd0adbe7a9a
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -37,6 +50,9 @@ Global
 >>>>>>> Ryan's_Branch
 =======
 																						GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> Wei_Jie's_Branch
+=======
+																													GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> Wei_Jie's_Branch
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
