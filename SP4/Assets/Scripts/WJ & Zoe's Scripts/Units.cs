@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Units : MonoBehaviour 
 {
+	public Transform Target;
 	public float spawnTime;
 	
 	public float health;
@@ -34,7 +35,7 @@ public class Units : MonoBehaviour
 	
 	public GameObject j_unit;
 	public GameObject b_unit;
-	
+
 	//public BritishUnit ba_unit;
 	//public JapanUnit ja_unit;
 	
@@ -49,14 +50,14 @@ public class Units : MonoBehaviour
 	
 	//other stuff
 	void Awake()
-	{
-		//ba_unit = b_unit.GetComponent<BritishUnit> ();
-		//ja_unit = j_unit.GetComponent<JapanUnit> ();
+	{	
+
 	}
 	
 	// Use this for initialization
 	void Start () 
 	{
+			
 		//other stuff
 		direction.x = 1;
 		rtime = Time.time;
@@ -64,17 +65,20 @@ public class Units : MonoBehaviour
 		hptext.guiText.text = "Health: " + health;
 		Vector3 temp = camera1.WorldToViewportPoint (transform.position + new Vector3(0f,1f,0f));
 		hptext.transform.position = new Vector3(temp.x, temp.y);
-		
+
 		state = State.MOVE;
 		
 		health = max_health;
+
+
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		Debug.Log ("Current State: " + state);
-		
+		//Debug.Log ("Current State: " + state);
+
+
 		UpdateFSM ();
 		ExecuteFSM ();
 		
@@ -82,7 +86,7 @@ public class Units : MonoBehaviour
 		hptext.guiText.text = "Health: " + health;
 		Vector3 temp = camera1.WorldToViewportPoint (transform.position + new Vector3(0f,1.1f,0f));
 		hptext.transform.position = new Vector3(temp.x, temp.y);
-		
+	
 		GameObject[] allObjects = UnityEngine.GameObject.FindObjectsOfType<GameObject>() ;
 		if(tag == "BTank" || tag == "BHuman")
 		{
@@ -115,6 +119,7 @@ public class Units : MonoBehaviour
 	
 	void UpdateFSM()
 	{
+
 		switch (state) 
 		{
 		case State.IDLE:
@@ -230,10 +235,10 @@ public class Units : MonoBehaviour
 			
 			else if (gameObject.tag == "BHuman")
 			{
-				Vector3 pos = transform.position;
-				pos.x += move_speed;
-				transform.position = pos;
-			}
+//				Vector3 pos = transform.position;
+//				pos.x += move_speed;
+//				transform.position = pos;
+			}	
 			
 			else if (gameObject.tag == "JTank")
 			{
@@ -245,9 +250,9 @@ public class Units : MonoBehaviour
 			
 			else if (gameObject.tag == "JHuman")
 			{
-				Vector3 pos = j_unit.transform.position;
-				pos.x -= move_speed;
-				j_unit.transform.position = pos;
+//				Vector3 pos = j_unit.transform.position;
+//				pos.x -= move_speed;
+//				j_unit.transform.position = pos;
 			}
 		}
 			break;
