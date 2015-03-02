@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:SP4/Assets/Scripts/Bullet.cs.meta
 guid: fa95355e1d3e1ea449b5e398e00d930c
+=======
+guid: 53986b723ac785f43be59af6012ff980
+>>>>>>> 5fd0f710e1692aa2079e1437cceebbd0adbe7a9a:SP4/Assets/Scripts/Bullet.cs.meta
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []

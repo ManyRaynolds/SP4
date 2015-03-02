@@ -7,6 +7,7 @@ public class UnitBuilding : MonoBehaviour {
 	public float spawnTimer;
 	public short MAX_QUEUE_LENGTH = 5;
 
+<<<<<<< HEAD
 	public bool hover = false;
 	public bool selected = false;
 
@@ -14,6 +15,8 @@ public class UnitBuilding : MonoBehaviour {
 	public bool canPlace = true;
 	public float placeBufferTime = 1.0f;
 
+=======
+>>>>>>> 5fd0f710e1692aa2079e1437cceebbd0adbe7a9a
 	public GameObject[] UnitPrefabs;
 
 	// Use this for initialization
@@ -22,6 +25,7 @@ public class UnitBuilding : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+<<<<<<< HEAD
 		
 		if (placing) {
 			gameObject.rigidbody.useGravity = false;
@@ -45,6 +49,24 @@ public class UnitBuilding : MonoBehaviour {
 					placing = false;
 					gameObject.rigidbody.useGravity = true;
 					gameObject.collider.isTrigger = false;	
+=======
+
+		UpdateBuilding ();
+
+		if (!destroyed) {
+			if (networkView.isMine) {				
+				if (spawnQueue.Count > 0) {
+					spawnTimer += Time.deltaTime;
+					if (spawnTimer >= spawnQueue[0].spawnTime){
+						spawnTimer -= spawnQueue[0].spawnTime;		
+						Vector3 temp = this.transform.position;
+						temp.x -= this.transform.lossyScale.x * 1.5f;
+						temp.z -= this.transform.lossyScale.z * 1.5f;
+						Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
+						//Instantiate(spawnQueue[0], this.transform.position, this.transform.rotation);
+						spawnQueue.RemoveAt(0);
+					}
+>>>>>>> 5fd0f710e1692aa2079e1437cceebbd0adbe7a9a
 				}
 			}
 			else{
@@ -74,6 +96,7 @@ public class UnitBuilding : MonoBehaviour {
 					this.renderer.material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);		
 				} 
 				else {
+<<<<<<< HEAD
 					this.renderer.material.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);		
 				}
 			}
@@ -86,11 +109,15 @@ public class UnitBuilding : MonoBehaviour {
 				}
 				else {
 					this.renderer.material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);	
+=======
+					spawnTimer = 0.0f;
+>>>>>>> 5fd0f710e1692aa2079e1437cceebbd0adbe7a9a
 				}
 			}
 		}
 	}
 
+<<<<<<< HEAD
 	void OnMouseEnter(){
 		if (!placing){
 			hover = true;
@@ -121,6 +148,8 @@ public class UnitBuilding : MonoBehaviour {
 		canPlace = false;
 	}
 
+=======
+>>>>>>> 5fd0f710e1692aa2079e1437cceebbd0adbe7a9a
 	public bool AddToQueue(Unit newunit){
 		//check if building has space to build unit
 		if (spawnQueue.Count >= MAX_QUEUE_LENGTH) {

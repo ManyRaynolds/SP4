@@ -19,7 +19,11 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
+<<<<<<< HEAD
 	<DefineConstants>DEBUG;TRACE;UNITY_4_5_5;UNITY_4_5;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+=======
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+>>>>>>> 5fd0f710e1692aa2079e1437cceebbd0adbe7a9a
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,6 +50,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
      <Compile Include="Assets\Script\CollisionTest.cs" />
      <Compile Include="Assets\Script\EnemyAI.cs" />
      <Compile Include="Assets\Script\EnemyAI_Patrol.cs" />
@@ -53,6 +58,10 @@
      <Compile Include="Assets\Script\PlayerAI.cs" />
      <Compile Include="Assets\Script\Shooting.cs" />
      <Compile Include="Assets\Script\test_grid.cs" />
+=======
+     <Compile Include="Assets\Scripts\BaseBuilding.cs" />
+     <Compile Include="Assets\Scripts\Building.cs" />
+>>>>>>> 5fd0f710e1692aa2079e1437cceebbd0adbe7a9a
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\CameraMarquee.cs" />
      <Compile Include="Assets\Scripts\Gold.cs" />
@@ -77,6 +86,7 @@
      <Compile Include="Assets\Scripts\UnitSelect.cs" />
      <Compile Include="Assets\Scripts\Units.cs" />
      <Compile Include="Assets\Scripts\UnitsControl.cs" />
+     <Compile Include="Assets\Scripts\UnitsManager.cs" />
      <Compile Include="Assets\Scripts\Unused\BDestroy.cs" />
      <Compile Include="Assets\Scripts\Unused\Game.cs" />
      <Compile Include="Assets\Scripts\Unused\Grid.cs" />
@@ -86,6 +96,7 @@
      <Compile Include="Assets\Scripts\Unused\Sync.cs" />
      <Compile Include="Assets\Scripts\Unused\TileMap.cs" />
      <Compile Include="Assets\Scripts\Unused\TileSpawner.cs" />
+<<<<<<< HEAD
  <Reference Include="MySql.Data">
  <HintPath>C:/Users/gabriel/Desktop/SP4STUFF/SP4/Assets/Plugins/MySql.Data.dll</HintPath>
  </Reference>
@@ -94,6 +105,18 @@
  </Reference>
  <Reference Include="System.Drawing">
  <HintPath>C:/Users/gabriel/Desktop/SP4STUFF/SP4/Assets/Plugins/System.Drawing.dll</HintPath>
+=======
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\CollisionTest.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\EnemyAI.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\EnemyAI_Patrol.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\ObjectDestroy.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\PlayerAI.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\Shooting.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\Units.cs" />
+     <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\test_grid.cs" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+>>>>>>> 5fd0f710e1692aa2079e1437cceebbd0adbe7a9a
  </Reference>
   </ItemGroup>
   <ItemGroup>
