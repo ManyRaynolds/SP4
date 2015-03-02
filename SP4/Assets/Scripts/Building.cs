@@ -87,10 +87,16 @@ public class Building : MonoBehaviour {
 	}
 	else{
 		if (placing){
-			this.enabled = false;
+				for (int i = 0; i < this.transform.childCount; ++i)
+				{
+					this.transform.GetChild(i).gameObject.SetActive(false);
+				}
 		}
 		else{
-			this.enabled = true;
+				for (int i = 0; i < this.transform.childCount; ++i)
+				{
+					this.transform.GetChild(i).gameObject.SetActive(true);
+				}
 		}
 		if (!destroyed) {
 				if (selected) {

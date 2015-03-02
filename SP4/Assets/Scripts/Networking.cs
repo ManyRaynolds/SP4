@@ -23,6 +23,13 @@ public class Networking : MonoBehaviour {
 
 	public GameObject playerObject;
 
+	public struct PlayerInformation{
+		public string name;
+		public NetworkPlayer player;
+		public bool ready;
+	}
+	public List<PlayerInformation> playerInfoList = new List<PlayerInformation>();
+
 	// Use this for initialization
 	void Start () {
 		Application.runInBackground = true;
@@ -85,6 +92,19 @@ public class Networking : MonoBehaviour {
 			GUI.Label(new Rect(0.0f, 45.0f, 100, 25), "Port: " + port);
 			GUI.Label(new Rect(0.0f, 60.0f, 200, 25), "Players: " + (Network.connections.Length + 1));
 
+			//display connected players
+			int playerIndex = 0;
+			foreach (PlayerInformation pi in playerInfoList){
+				++playerIndex;
+				GUI.Label(new Rect(0.0f, 100 + 12.5f * playerIndex, Screen.width, 25), pi.name + " (" + pi.ready + ")");
+			}
+
+			//ready button
+			if (GUI.Button (new Rect(0.0f, 85.0f, 125, 25), "Ready")){
+				this.networkView.RPC ("UpdateReady", RPCMode.All, Network.player, !playerInfoList[0].ready);
+			}
+
+
 			//chat input
 			GUI.SetNextControlName("chatfield");
 			currentMessage = GUI.TextField(new Rect(0.0f, Screen.height - 45, 200, 25), currentMessage);
@@ -144,7 +164,17 @@ public class Networking : MonoBehaviour {
 		}
 	}*/
 
+	void OnPlayerConnected(NetworkPlayer player){
+	}
+
 	void OnPlayerDisconnected(NetworkPlayer player){
+		for (int i = 0; i < playerInfoList.Count; ++i) {
+			if (playerInfoList[i].player == player){
+				this.networkView.RPC ("Chat", RPCMode.All, playerInfoList[i].name + " has left the server");
+				break;
+			}
+		}
+		this.networkView.RPC ("RemovePlayer", RPCMode.All, player);
 		Network.RemoveRPCs (player);
 		Network.DestroyPlayerObjects (player);
 	}
@@ -154,6 +184,49 @@ public class Networking : MonoBehaviour {
 		chatLog.Add (message);
 	}
 
+	[RPC]
+	public void AddPlayer(string name, NetworkPlayer player, bool ready){
+		if (Network.isServer) {
+			foreach (PlayerInformation pi in playerInfoList){
+				this.networkView.RPC ("AddPlayer", player, pi.name, pi.player, pi.ready);
+			}
+		}
+		foreach (PlayerInformation pi in playerInfoList){
+			if (pi.player == player){
+				return;
+			}
+		}
+		PlayerInformation playerinfo = new PlayerInformation();
+		playerinfo.name = name;
+		playerinfo.player = player;
+		playerinfo.ready = ready;
+		playerInfoList.Add(playerinfo);
+	}
+
+	[RPC]
+	public void RemovePlayer(NetworkPlayer player){
+		for (int i = 0; i < playerInfoList.Count; ++i) {
+			if (playerInfoList[i].player == player){
+				playerInfoList.RemoveAt(i);
+				break;
+			}
+		}
+	}
+
+	[RPC]
+	public void UpdateReady(NetworkPlayer player, bool ready){
+		for (int i = 0; i < playerInfoList.Count; ++i) {
+			if (playerInfoList[i].player == player){	
+				PlayerInformation pi = new PlayerInformation();
+				pi.name = playerInfoList[i].name;
+				pi.player = playerInfoList[i].player;
+				pi.ready = ready;
+				playerInfoList[i] = pi;
+				break;
+			}
+		}
+	}
+
 	IEnumerator SendJoinMessage(){
 		yield return new WaitForSeconds (0.01f);
 		if (Network.peerType == NetworkPeerType.Server) {
@@ -161,10 +234,16 @@ public class Networking : MonoBehaviour {
 			Vector3 temp = playerObject.transform.position;
 			temp.x += 20;
 			Network.Instantiate(playerObject, temp, playerObject.transform.rotation, 0);
+
+			playerInfoList.Clear();
+			networkView.RPC("AddPlayer", RPCMode.All, playername, Network.player, false);
 		}
 		else if (Network.peerType == NetworkPeerType.Client) {
 			this.networkView.RPC ("Chat", RPCMode.All, playername + " has joined the server");
 			Network.Instantiate(playerObject, playerObject.transform.position, playerObject.transform.rotation, 0);
+			
+			playerInfoList.Clear();
+			networkView.RPC("AddPlayer", RPCMode.All, playername, Network.player, false);
 		} 
 		else {
 			StartCoroutine (SendJoinMessage ());
