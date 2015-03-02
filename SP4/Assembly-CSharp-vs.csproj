@@ -54,6 +54,8 @@
      <Compile Include="Assets\Script\PlayerAI.cs" />
      <Compile Include="Assets\Script\Shooting.cs" />
      <Compile Include="Assets\Script\Units.cs" />
+     <Compile Include="Assets\WJ&apos;s Script\EnemyAI_Final.cs" />
+     <Compile Include="Assets\WJ&apos;s Script\PlayerInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
