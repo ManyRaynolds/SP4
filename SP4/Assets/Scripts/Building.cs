@@ -129,4 +129,10 @@ public class Building : MonoBehaviour {
 		health -= damage;
 		damagePartSys.Emit ((int)damage * 10);
 	}
+	[RPC]		
+	public void PlaceBuilding(){
+		placing = false;
+		gameObject.rigidbody.useGravity = true;
+		gameObject.collider.isTrigger = false;	
+	}
 }

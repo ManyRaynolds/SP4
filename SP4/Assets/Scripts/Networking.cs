@@ -116,8 +116,14 @@ public class Networking : MonoBehaviour {
 				GUI.Label(new Rect(0.0f, Screen.height - 65 - 12.5f * (chatLog.Count - chatindex), Screen.width, 25), msg);
 			}
 			
-			if (GUI.Button (new Rect(200.0f, 0.0f, 125, 25), "Building")){
+			if (GUI.Button (new Rect(200.0f, 0.0f, 100, 25), "Unit")){
 				Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
+			}
+			if (GUI.Button (new Rect(300.0f, 0.0f, 100, 25), "Resource")){
+				Network.Instantiate(UnitBuildingPrefabs[1], Vector3.zero, Quaternion.identity, 0);
+			}
+			if (GUI.Button (new Rect(400.0f, 0.0f, 100, 25), "Base")){
+				Network.Instantiate(UnitBuildingPrefabs[2], Vector3.zero, Quaternion.identity, 0);
 			}
 //			if (GUI.Button (new Rect(200.0f, 0.0f, 125, 25), "Units")){
 //				Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);

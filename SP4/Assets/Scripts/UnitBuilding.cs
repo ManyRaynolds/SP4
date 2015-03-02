@@ -77,13 +77,6 @@ public class UnitBuilding : Building {
 			}
 		}
 	}
-	
-	[RPC]		
-	public void PlaceBuilding(){
-		placing = false;
-		gameObject.rigidbody.useGravity = true;
-		gameObject.collider.isTrigger = false;	
-	}
 }
 
 
