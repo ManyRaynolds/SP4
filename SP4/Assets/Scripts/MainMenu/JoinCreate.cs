@@ -35,7 +35,11 @@ public class JoinCreate : MonoBehaviour {
 		{
 			if(GUI.Button(new Rect(((float)Screen.width/100*17), (float)Screen.height/100*60, (float)Screen.width/100*25, (float)Screen.height/100*13), "", CreateGame))
 			{
+<<<<<<< HEAD
 				//Network.InitializeServer(maxConnections, port, false);
+=======
+				Network.InitializeServer(maxConnections, port, false);
+>>>>>>> 56d2a76de522223448b8882592754fff06503730
 				//StartCoroutine (SendJoinMessage ());
 				//buttonpressed = true;
 				//Initiate.Fade("LoginMenu", Color.black,0.5f);
@@ -46,8 +50,13 @@ public class JoinCreate : MonoBehaviour {
 			if(GUI.Button(new Rect(((float)Screen.width/100*55), (float)Screen.height/100*60, (float)Screen.width/100*25, (float)Screen.height/100*13), "", JoinGame))
 			{
 //				Network.Connect(ipAddress, port);
+<<<<<<< HEAD
 				//Network.Connect (MainMenu.url, port);
 				//StartCoroutine (SendJoinMessage ());
+=======
+				Network.Connect (MainMenu.url, port);
+				StartCoroutine (SendJoinMessage ());
+>>>>>>> 56d2a76de522223448b8882592754fff06503730
 				//buttonpressed = true;
 				//Initiate.Fade("Settings", Color.black,0.5f);
 				//Debug.Log("Settings");
@@ -60,6 +69,7 @@ public class JoinCreate : MonoBehaviour {
 		else{
 //			if(Network.peerType != NetworkPeerType.Disconnected)
 //			{
+<<<<<<< HEAD
 				Initiate.Fade("MultiplayerLobby", Color.black, 0.5f);
 //			}
 //			GUI.Label(new Rect(20.0f, 30.0f, 100, 25), "IP: " + ipAddress);
@@ -72,6 +82,20 @@ public class JoinCreate : MonoBehaviour {
 //				GUI.Label(new Rect(0.0f, 70.0f + j * 20, 200, 25), " - " + Network.connections.ToString());
 //				++j;
 //			}
+=======
+				Initiate.Fade("Grid", Color.black, 0.5f);
+//			}
+//			GUI.Label(new Rect(20.0f, 30.0f, 100, 25), "IP: " + ipAddress);
+			GUI.Label(new Rect(20.0f, 30.0f, 100, 25), "IP: " + MainMenu.url);
+			GUI.Label(new Rect(20.0f, 50.0f, 100, 25), "Port: " + port);
+			GUI.Label(new Rect(20.0f, 70.0f, 200, 25), "Players: " + (Network.connections.Length + 1));
+			
+			int j = 0;
+			foreach(NetworkPlayer i in Network.connections){
+				GUI.Label(new Rect(0.0f, 70.0f + j * 20, 200, 25), " - " + Network.connections.ToString());
+				++j;
+			}
+>>>>>>> 56d2a76de522223448b8882592754fff06503730
 		}
 	}
 	IEnumerator SendJoinMessage(){
