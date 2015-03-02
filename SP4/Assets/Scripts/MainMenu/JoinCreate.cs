@@ -36,7 +36,11 @@ public class JoinCreate : MonoBehaviour {
 			if(GUI.Button(new Rect(((float)Screen.width/100*17), (float)Screen.height/100*60, (float)Screen.width/100*25, (float)Screen.height/100*13), "", CreateGame))
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				//Network.InitializeServer(maxConnections, port, false);
+=======
+				Network.InitializeServer(maxConnections, port, false);
+>>>>>>> 56d2a76de522223448b8882592754fff06503730
 =======
 				Network.InitializeServer(maxConnections, port, false);
 >>>>>>> 56d2a76de522223448b8882592754fff06503730
@@ -51,8 +55,13 @@ public class JoinCreate : MonoBehaviour {
 			{
 //				Network.Connect(ipAddress, port);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				//Network.Connect (MainMenu.url, port);
 				//StartCoroutine (SendJoinMessage ());
+=======
+				Network.Connect (MainMenu.url, port);
+				StartCoroutine (SendJoinMessage ());
+>>>>>>> 56d2a76de522223448b8882592754fff06503730
 =======
 				Network.Connect (MainMenu.url, port);
 				StartCoroutine (SendJoinMessage ());
@@ -70,6 +79,7 @@ public class JoinCreate : MonoBehaviour {
 //			if(Network.peerType != NetworkPeerType.Disconnected)
 //			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				Initiate.Fade("MultiplayerLobby", Color.black, 0.5f);
 //			}
 //			GUI.Label(new Rect(20.0f, 30.0f, 100, 25), "IP: " + ipAddress);
@@ -83,6 +93,8 @@ public class JoinCreate : MonoBehaviour {
 //				++j;
 //			}
 =======
+=======
+>>>>>>> 56d2a76de522223448b8882592754fff06503730
 				Initiate.Fade("Grid", Color.black, 0.5f);
 //			}
 //			GUI.Label(new Rect(20.0f, 30.0f, 100, 25), "IP: " + ipAddress);
@@ -95,6 +107,9 @@ public class JoinCreate : MonoBehaviour {
 				GUI.Label(new Rect(0.0f, 70.0f + j * 20, 200, 25), " - " + Network.connections.ToString());
 				++j;
 			}
+<<<<<<< HEAD
+>>>>>>> 56d2a76de522223448b8882592754fff06503730
+=======
 >>>>>>> 56d2a76de522223448b8882592754fff06503730
 		}
 	}
