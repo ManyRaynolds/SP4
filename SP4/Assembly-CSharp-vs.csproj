@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\Building.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\CameraMarquee.cs" />
+     <Compile Include="Assets\Scripts\EnemyLogic.cs" />
      <Compile Include="Assets\Scripts\FOWSight.cs" />
      <Compile Include="Assets\Scripts\FOWVisibility.cs" />
      <Compile Include="Assets\Scripts\FollowPositionPhysics.cs" />
@@ -72,6 +73,7 @@
      <Compile Include="Assets\Scripts\Networking.cs" />
      <Compile Include="Assets\Scripts\PathRequest.cs" />
      <Compile Include="Assets\Scripts\Pathfinder.cs" />
+     <Compile Include="Assets\Scripts\PlayerInfo.cs" />
      <Compile Include="Assets\Scripts\ResourceBuilding.cs" />
      <Compile Include="Assets\Scripts\SFXSound.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
@@ -98,6 +100,7 @@
      <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\Shooting.cs" />
      <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\test_grid.cs" />
      <Compile Include="Assets\WJ&apos;s Script\EnemyAI_Final.cs" />
+<<<<<<< HEAD
      <Compile Include="Assets\WJ&apos;s Script\PlayerInfo.cs" />
  <Reference Include="MySql.Data">
  <HintPath>C:/Users/gabriel/Desktop/SP4STUFF/SP4/Assets/Plugins/MySql.Data.dll</HintPath>
@@ -108,6 +111,8 @@
  <Reference Include="System.Drawing">
  <HintPath>C:/Users/gabriel/Desktop/SP4STUFF/SP4/Assets/Plugins/System.Drawing.dll</HintPath>
  </Reference>
+=======
+>>>>>>> 7f5424a43622b120452081cee519a3f2230b57ec
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
