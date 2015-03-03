@@ -4,7 +4,7 @@ using System.Collections;
 public class Sound : MonoBehaviour {
 
 	public static AudioSource bgm;
-	public static float volume = 0.5f;
+	//public static float volume = 0.5f;
 	// Use this for initialization
 	void Start () {
 		bgm = this.audio;

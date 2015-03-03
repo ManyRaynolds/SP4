@@ -69,6 +69,7 @@
      <Compile Include="Assets\Scripts\PathRequest.cs" />
      <Compile Include="Assets\Scripts\Pathfinder.cs" />
      <Compile Include="Assets\Scripts\ResourceBuilding.cs" />
+     <Compile Include="Assets\Scripts\SFXSound.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
      <Compile Include="Assets\Scripts\UnitBuilding.cs" />
      <Compile Include="Assets\Scripts\UnitSelect.cs" />
