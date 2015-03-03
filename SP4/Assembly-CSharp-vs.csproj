@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>E:/Program Files (x86)/Unity 4.5.5/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>E:/Program Files (x86)/Unity 4.5.5/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +99,15 @@
      <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\test_grid.cs" />
      <Compile Include="Assets\WJ&apos;s Script\EnemyAI_Final.cs" />
      <Compile Include="Assets\WJ&apos;s Script\PlayerInfo.cs" />
+ <Reference Include="MySql.Data">
+ <HintPath>C:/Users/gabriel/Desktop/SP4STUFF/SP4/Assets/Plugins/MySql.Data.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data">
+ <HintPath>C:/Users/gabriel/Desktop/SP4STUFF/SP4/Assets/Plugins/System.Data.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Drawing">
+ <HintPath>C:/Users/gabriel/Desktop/SP4STUFF/SP4/Assets/Plugins/System.Drawing.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">

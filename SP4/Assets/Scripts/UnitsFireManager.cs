@@ -36,9 +36,9 @@ public class UnitsFireManager : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider other){
-		if (other.gameObject.networkView.isMine){
-			return;
-		}
+		//if (other.gameObject.networkView.isMine){
+		//	return;
+		//}
 		if (other.tag == "SelectableUnit"){
 			if (target == null){
 				target = other.gameObject;

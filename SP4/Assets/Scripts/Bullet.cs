@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour {
 		}
 	}
 	
-	void OnTriggerEnter(Collision coll){
+	void OnTriggerEnter(Collider coll){
 		if (coll.gameObject == target) {
 			//if target is a building
 			if (target.GetComponent<Building>() != null){	
