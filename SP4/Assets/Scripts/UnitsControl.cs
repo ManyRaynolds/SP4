@@ -10,14 +10,18 @@ public class UnitsControl : MonoBehaviour {
 	int targetIndex;
 	ClickDetector cd;
 	public bool commanded = false;
+	public bool found = false;
 	public LayerMask EnemyMask;
 	bool NotAttackable;
 	public List<GameObject> UnSelectableUnits;
 	public List<GameObject> list;
+	public List<GameObject> GO;
 	public Building myBuilding;
+	public UnitsManager um;
 
 	void Start() {
 		cd = FindObjectOfType<ClickDetector>();
+		um = FindObjectOfType<UnitsManager>();
 		myBuilding = FindObjectOfType<Building>();
 		if(gameObject.GetComponent<UnitSelect>().isSelected == true)
 		{
@@ -94,9 +98,20 @@ public class UnitsControl : MonoBehaviour {
 				//if (type == Unit)
 				//HitUnit();
 			}
+
+		}
+		if (um && found == false && gameObject.GetComponent<PathRequest>().isProcessingPath == false)
+		{
+			//&& gameObject.GetComponent<PathRequest>().isProcessingPath == false
+			PathRequest.RequestPath(transform.position, target.position, OnPathFound);
+			//found = true;
+			targetIndex = 0;
+		}
+		else{
+			found = true;
 		}
 	}
-
+	
 	public void HitBuilding() {
 		myBuilding.SendDamage(20);
 	}

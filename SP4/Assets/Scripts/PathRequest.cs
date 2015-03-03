@@ -11,7 +11,7 @@ public class PathRequest : MonoBehaviour {
 	static PathRequest instance;
 	Pathfinder pathfinding;
 
-	bool isProcessingPath;
+	public bool isProcessingPath;
 
 	void Awake() {
 		instance = this;
