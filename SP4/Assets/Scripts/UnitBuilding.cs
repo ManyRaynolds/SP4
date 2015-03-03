@@ -5,7 +5,7 @@ public class UnitBuilding : Building {
 
 	public GUIStyle spawnunits;
 
-	public List <Unit> spawnQueue = new List<Unit>();
+	public List <GameObject> spawnQueue = new List<GameObject>();
 	public float spawnTimer;
 	public short MAX_QUEUE_LENGTH = 5;
 	
@@ -23,15 +23,19 @@ public class UnitBuilding : Building {
 		if (!destroyed) {
 			if (networkView.isMine) {				
 				if (spawnQueue.Count > 0) {
+					//Debug.Log("spawned2");
 					spawnTimer += Time.deltaTime;
-					if (spawnTimer >= spawnQueue[0].spawnTime){
-						spawnTimer -= spawnQueue[0].spawnTime;		
+					if (spawnTimer >= spawnQueue[0].GetComponentInChildren<Unit>().spawnTime){
+						Debug.Log("spawned");
+						spawnTimer -= spawnQueue[0].GetComponentInChildren<Unit>().spawnTime;		
 						Vector3 temp = this.transform.position;
 						temp.x -= this.transform.lossyScale.x * 3.5f;
 						temp.z -= this.transform.lossyScale.z * 3.5f;
 						Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
+
 						//Instantiate(spawnQueue[0], this.transform.position, this.transform.rotation);
 						spawnQueue.RemoveAt(0);
+
 					}
 				}
 				else {
@@ -44,7 +48,7 @@ public class UnitBuilding : Building {
 		}
 	}
 	
-	public bool AddToQueue(Unit newunit){
+	public bool AddToQueue(GameObject newunit){
 		//check if building has space to build unit
 		if (spawnQueue.Count >= MAX_QUEUE_LENGTH) {
 			return false;
@@ -71,13 +75,12 @@ public class UnitBuilding : Building {
 					initialmousepos = Input.mousePosition;
 				}
 
-					if (GUI.Button (new Rect (100, 200, 100, 200), "", spawnunits)) {
+					if (GUI.Button (new Rect (100, 200, 100, 200), "Spawn", spawnunits)) {
 						//Vector3 temp = this.transform.position;
 	//					temp.x -= this.transform.lossyScale.x * 3.5f;
 	//					temp.z -= this.transform.lossyScale.z * 3.5f;
 	//					Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
-					Debug.Log("hi");
-						AddToQueue(UnitPrefabs[0].GetComponent<Unit>());
+						AddToQueue(UnitPrefabs[0]);
 					}
 				else{
 					if (!hover){
