@@ -71,7 +71,7 @@ public class UnitBuilding : Building {
 					initialmousepos = Input.mousePosition;
 				}
 
-					if (GUI.Button (new Rect (100, 200, 100, 200), "", spawnunits)) {
+					if (GUI.Button (new Rect (100, 200, 100, 200), "spawning", spawnunits)) {
 						//Vector3 temp = this.transform.position;
 	//					temp.x -= this.transform.lossyScale.x * 3.5f;
 	//					temp.z -= this.transform.lossyScale.z * 3.5f;

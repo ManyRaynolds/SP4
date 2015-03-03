@@ -25,6 +25,9 @@ public class UnitsFireManager : MonoBehaviour {
 	}
 
 	void  OnTriggerEnter(Collider other){
+		if (other.gameObject.networkView.isMine){
+			return;
+		}
 		if (other.tag == "SelectableUnit"){
 			if (target == null){
 				target = other.gameObject;
@@ -33,12 +36,20 @@ public class UnitsFireManager : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider other){
-		if (target == null){
-			target = other.gameObject;
+		if (other.gameObject.networkView.isMine){
+			return;
+		}
+		if (other.tag == "SelectableUnit"){
+			if (target == null){
+				target = other.gameObject;
+			}
 		}
 	}
 
 	void OnTriggerExit(Collider other) {
+		if (other.gameObject.networkView.isMine){
+			return;
+		}
 		if (other.gameObject == target){
 			target = null;
 		}
