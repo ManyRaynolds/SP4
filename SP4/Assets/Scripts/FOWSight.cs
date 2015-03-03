@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FOWSight : MonoBehaviour {
 
-	public float radius = 500.0f;
+	public float radius = 50.0f;
 	public LayerMask layermask = -1;
 
 	// Use this for initialization

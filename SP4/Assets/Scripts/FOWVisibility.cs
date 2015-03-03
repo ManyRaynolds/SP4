@@ -25,6 +25,7 @@ public class FOWVisibility : MonoBehaviour {
 	// Update is called once per frame
 	void Observed () 
 	{
+		Debug.Log("Observed", gameObject);
 		observed = true;
 	}
 }

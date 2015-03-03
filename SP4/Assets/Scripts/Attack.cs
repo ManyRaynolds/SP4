@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Attack : MonoBehaviour {
 
-	//Other stuff
+	/*//Other stuff
 	Vector3 direction;
 
 	public float health;
@@ -57,7 +57,7 @@ public class Attack : MonoBehaviour {
 					/*Vector3 bulletpos = Bullet.transform.position;
 					bulletpos.x += 0.05f;
 					Bullet.transform.position = bulletpos;*/
-				attack_timer += Time.deltaTime;
+				/*attack_timer += Time.deltaTime;
 			
 				if (attack_timer >= attack_time) 
 				{
@@ -104,5 +104,5 @@ public class Attack : MonoBehaviour {
 				}
 			}
 		}
-	}
+	}*/
 }

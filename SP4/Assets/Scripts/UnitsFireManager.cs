@@ -3,32 +3,44 @@ using System.Collections;
 
 public class UnitsFireManager : MonoBehaviour {
 
-	public GameObject basicProjectile;
-	GameObject projectileInstance;
-	public bool trigger = false;
+	public GameObject bullet;
+	public GameObject target;
+
+	public float shootTime = 0;
+	public float shootTimer = 0;
 	// Use this for initialization
 	void Start () {
-		Rigidbody projectileRigidInstance;
-		//projectileRigidInstance = projectileInstance.GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	 //if got enemy in radius,
-		if(trigger == true)
-		{
-			projectileInstance = (GameObject)Instantiate(basicProjectile, transform.position, transform.rotation);
+		if (target != null){
+			shootTimer += Time.deltaTime;
+			if (shootTimer >= shootTime){
+				shootTimer -= shootTime;
+				GameObject newBullet = Network.Instantiate(bullet, transform.position, transform.rotation, 0) as GameObject;
+				newBullet.GetComponent<Bullet>().target = target;
+			}
 		}
 	}
 
 	void  OnTriggerEnter(Collider other){
 		if (other.tag == "SelectableUnit"){
-			GameObject go = GameObject.FindGameObjectWithTag ("SelectableUnit");	
-			trigger = true;
+			if (target == null){
+				target = other.gameObject;
+			}
 		}
 	}
+
+	void OnTriggerStay(Collider other){
+		if (target == null){
+			target = other.gameObject;
+		}
+	}
+
 	void OnTriggerExit(Collider other) {
-		trigger = false;
-		DestroyObject(projectileInstance);
+		if (other.gameObject == target){
+			target = null;
+		}
 	}
 }
