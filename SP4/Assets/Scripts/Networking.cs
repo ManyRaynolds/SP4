@@ -117,7 +117,7 @@ public class Networking : MonoBehaviour {
 			int playerIndex = 0;
 			foreach (PlayerInformation pi in playerInfoList){
 				++playerIndex;
-				GUI.Label(new Rect(0.0f, 100 + 12.5f * playerIndex, Screen.width, 25), pi.name + " (" + pi.ready + ")");
+				GUI.Label(new Rect(0.0f, 200 + 12.5f * playerIndex, Screen.width, 25), pi.name + " (" + pi.ready + ")");
 			}
 
 			//ready button
@@ -128,9 +128,9 @@ public class Networking : MonoBehaviour {
 
 			//chat input
 			GUI.SetNextControlName("chatfield");
-			currentMessage = GUI.TextField(new Rect(0.0f, Screen.height/100*95, 200, 25), currentMessage);
+			currentMessage = GUI.TextField(new Rect(0.0f, Screen.height/100*95, Screen.width/100*22, (float)(Screen.height/100*2.5)), currentMessage);
 
-			if (GUI.Button(new Rect(Screen.width/100*19, Screen.height/100*95, 50, 25), "Send")){
+			if (GUI.Button(new Rect(Screen.width/100*25, Screen.height/100*95, Screen.width/100*8, (float)(Screen.height/100*2.5)), "Send")){
 				if (currentMessage.Length > 0){
 					string temp = "[" + playername + "]: " + currentMessage;
 					this.networkView.RPC ("Chat", RPCMode.All, temp);
@@ -159,7 +159,7 @@ public class Networking : MonoBehaviour {
 			//=======================================
 			//      Enforces it to build function
 			//=======================================
-			if (GUI.Button (new Rect(200.0f, 0.0f, 80, 25), "", unitstyle)){
+			if (GUI.Button (new Rect(Screen.width/100*37 , Screen.height/100, Screen.width/100*15, Screen.height/100*5), "", unitstyle)){
 				//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
 				//sfx = this.audio;
 				if (gold >= UnitBuildingPrefabs[0].GetComponent<Building>().cost){
@@ -178,26 +178,26 @@ public class Networking : MonoBehaviour {
 			//===========================
 			if(build == true)
 			{
-				if(GUI.Button(new Rect(200.0f, Screen.height/100*4, 100,100), "", buildingstyle))
+				if(GUI.Button(new Rect(200.0f, Screen.height/100*5, 100,100), "", buildingstyle))
 				{
 					Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
 					build = false;
 				}
 			}
 
-			if (GUI.Button (new Rect(300.0f, 0.0f, 80, 25), "", resourcestyle)){
+			if (GUI.Button (new Rect(Screen.width/100*60, Screen.height/100, Screen.width/100*15, Screen.height/100*5), "", resourcestyle)){
 				if (gold >= UnitBuildingPrefabs[1].GetComponent<Building>().cost){
 					gold -= UnitBuildingPrefabs[1].GetComponent<Building>().cost;
 				Network.Instantiate(UnitBuildingPrefabs[1], Vector3.zero, Quaternion.identity, 0);
 				}
 			}
 
-				if (GUI.Button (new Rect(400.0f, 0.0f, 100, 25), "Base")){
-				if (gold >= UnitBuildingPrefabs[2].GetComponent<Building>().cost){
-					gold -= UnitBuildingPrefabs[2].GetComponent<Building>().cost;
-						Network.Instantiate(UnitBuildingPrefabs[2], Vector3.zero, Quaternion.identity, 0);
-					}
-			}
+//				if (GUI.Button (new Rect(400.0f, 0.0f, 100, 25), "Base")){
+//				if (gold >= UnitBuildingPrefabs[2].GetComponent<Building>().cost){
+//					gold -= UnitBuildingPrefabs[2].GetComponent<Building>().cost;
+//						Network.Instantiate(UnitBuildingPrefabs[2], Vector3.zero, Quaternion.identity, 0);
+//					}
+//			}
 //			if (GUI.Button (new Rect(200.0f, 0.0f, 125, 25), "Units")){
 //				Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
 //			}
@@ -303,21 +303,3 @@ public class Networking : MonoBehaviour {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
