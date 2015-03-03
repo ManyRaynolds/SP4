@@ -25,12 +25,12 @@ public class UnitBuilding : Building {
 				if (spawnQueue.Count > 0) {
 					//Debug.Log("spawned2");
 					spawnTimer += Time.deltaTime;
-					if (spawnTimer >= spawnQueue[0].GetComponentInChildren<Unit>().spawnTime){
-						Debug.Log("spawned");
-						spawnTimer -= spawnQueue[0].GetComponentInChildren<Unit>().spawnTime;		
+					Unit unit = spawnQueue[0].transform.FindChild("Seeker").GetComponent<Unit>();
+					if (spawnTimer >= unit.spawnTime){
+						spawnTimer -= unit.spawnTime;		
 						Vector3 temp = this.transform.position;
-						temp.x -= this.transform.lossyScale.x * 3.5f;
-						temp.z -= this.transform.lossyScale.z * 3.5f;
+						temp.x -= this.transform.lossyScale.x * 2.5f;
+						temp.z += this.transform.lossyScale.z * 0.0f;
 						Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
 
 						//Instantiate(spawnQueue[0], this.transform.position, this.transform.rotation);
@@ -75,7 +75,12 @@ public class UnitBuilding : Building {
 					initialmousepos = Input.mousePosition;
 				}
 
+<<<<<<< HEAD
 					if (GUI.Button (new Rect (100, 200, 100, 200), "Spawn", spawnunits)) {
+=======
+					if (GUI.Button (new Rect (100, 200, 100, 200), "spawning", spawnunits)) {
+
+>>>>>>> 5736c08e73526ac47627dd56f2ffba741f03df5b
 						//Vector3 temp = this.transform.position;
 	//					temp.x -= this.transform.lossyScale.x * 3.5f;
 	//					temp.z -= this.transform.lossyScale.z * 3.5f;
