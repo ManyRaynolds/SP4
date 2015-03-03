@@ -6,9 +6,16 @@ using System.Collections.Generic;
 
 public class Networking : MonoBehaviour {
 
+	public static AudioSource sfx;
+	public bool build= false;
 	public string ipAddress = "127.0.0.1";
 	public int port = 25167;
 	public int maxConnections = 10;
+
+	public GUIStyle unitstyle;
+	public GUIStyle resourcestyle;
+	public GUIStyle buildingstyle;
+	public GUIStyle building2style;
 
 	public GameObject[] UnitPrefabs;
 	public GameObject[] UnitBuildingPrefabs;
@@ -30,14 +37,21 @@ public class Networking : MonoBehaviour {
 	}
 	public List<PlayerInformation> playerInfoList = new List<PlayerInformation>();
 
+	public int gold = 0;
+	public float goldTimer = 0;
+	public float goldTime = 0;
+	public int goldAmount = 0;
+
 	// Use this for initialization
 	void Start () {
 		Application.runInBackground = true;
 
-		gameObject.AddComponent<NetworkView>();
-		gameObject.networkView.observed = this;
-		gameObject.networkView.stateSynchronization = NetworkStateSynchronization.ReliableDeltaCompressed;
-		gameObject.networkView.viewID = Network.AllocateViewID();
+		if (!gameObject.GetComponent<NetworkView> ()) {
+			gameObject.AddComponent<NetworkView>();
+			gameObject.networkView.observed = this;
+			gameObject.networkView.stateSynchronization = NetworkStateSynchronization.ReliableDeltaCompressed;
+			gameObject.networkView.viewID = Network.AllocateViewID();
+		}
 	}
 	
 	// Update is called once per frame
@@ -45,6 +59,13 @@ public class Networking : MonoBehaviour {
 		if (Network.peerType == NetworkPeerType.Disconnected) {
 			chatLog.Clear();
 			currentMessage = "";
+		}
+		else{
+			goldTimer += Time.deltaTime;
+			if (goldTimer >= goldTime){
+				goldTimer -= goldTime;
+				gold += goldAmount;
+			}
 		}
 	}
 
@@ -82,7 +103,7 @@ public class Networking : MonoBehaviour {
 			GUI.EndGroup ();
 		}
 		else{
-			GUI.BeginGroup (new Rect (10, 10, 800, 600));
+			GUI.BeginGroup (new Rect (10, 10, Screen.width, Screen.height));
 			//disconnect button
 			if (GUI.Button (new Rect(0.0f, 0.0f, 125, 25), "Disconnect")){
 				Network.Disconnect(200);
@@ -107,9 +128,9 @@ public class Networking : MonoBehaviour {
 
 			//chat input
 			GUI.SetNextControlName("chatfield");
-			currentMessage = GUI.TextField(new Rect(0.0f, Screen.height - 45, 200, 25), currentMessage);
+			currentMessage = GUI.TextField(new Rect(0.0f, Screen.height/100*95, 200, 25), currentMessage);
 
-			if (GUI.Button(new Rect(205, Screen.height - 45, 50, 25), "Send")){
+			if (GUI.Button(new Rect(Screen.width/100*19, Screen.height/100*95, 50, 25), "Send")){
 				if (currentMessage.Length > 0){
 					string temp = "[" + playername + "]: " + currentMessage;
 					this.networkView.RPC ("Chat", RPCMode.All, temp);
@@ -133,17 +154,49 @@ public class Networking : MonoBehaviour {
 			int chatindex = 0;
 			foreach(string msg in chatLog){
 				++chatindex;
-				GUI.Label(new Rect(0.0f, Screen.height - 65 - 12.5f * (chatLog.Count - chatindex), Screen.width, 25), msg);
+				GUI.Label(new Rect(0.0f, Screen.height - 95 - 12.5f * (chatLog.Count - chatindex), Screen.width, 25), msg);
 			}
-			
-			if (GUI.Button (new Rect(200.0f, 0.0f, 100, 25), "Unit")){
-				Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
+			//=======================================
+			//      Enforces it to build function
+			//=======================================
+			if (GUI.Button (new Rect(200.0f, 0.0f, 80, 25), "", unitstyle)){
+				//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
+				//sfx = this.audio;
+				if (gold >= UnitBuildingPrefabs[0].GetComponent<Building>().cost){
+					//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
+					//sfx = this.audio;
+					gold -= UnitBuildingPrefabs[0].GetComponent<Building>().cost;
+					Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
+				}
+
+				build = true;
+				//Debug.Log("build: " + build);
+				//audio.Play ();
 			}
-			if (GUI.Button (new Rect(300.0f, 0.0f, 100, 25), "Resource")){
+			//===========================
+			//  If its in build function
+			//===========================
+			if(build == true)
+			{
+				if(GUI.Button(new Rect(200.0f, Screen.height/100*4, 100,100), "", buildingstyle))
+				{
+					Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
+					build = false;
+				}
+			}
+
+			if (GUI.Button (new Rect(300.0f, 0.0f, 80, 25), "", resourcestyle)){
+				if (gold >= UnitBuildingPrefabs[1].GetComponent<Building>().cost){
+					gold -= UnitBuildingPrefabs[1].GetComponent<Building>().cost;
 				Network.Instantiate(UnitBuildingPrefabs[1], Vector3.zero, Quaternion.identity, 0);
+				}
 			}
-			if (GUI.Button (new Rect(400.0f, 0.0f, 100, 25), "Base")){
-				Network.Instantiate(UnitBuildingPrefabs[2], Vector3.zero, Quaternion.identity, 0);
+
+				if (GUI.Button (new Rect(400.0f, 0.0f, 100, 25), "Base")){
+				if (gold >= UnitBuildingPrefabs[2].GetComponent<Building>().cost){
+					gold -= UnitBuildingPrefabs[2].GetComponent<Building>().cost;
+						Network.Instantiate(UnitBuildingPrefabs[2], Vector3.zero, Quaternion.identity, 0);
+					}
 			}
 //			if (GUI.Button (new Rect(200.0f, 0.0f, 125, 25), "Units")){
 //				Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);

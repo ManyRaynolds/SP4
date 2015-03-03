@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 public class UnitBuilding : Building {
-	
+
+	public GUIStyle spawnunits;
+
 	public List <Unit> spawnQueue = new List<Unit>();
 	public float spawnTimer;
 	public short MAX_QUEUE_LENGTH = 5;
@@ -25,8 +27,8 @@ public class UnitBuilding : Building {
 					if (spawnTimer >= spawnQueue[0].spawnTime){
 						spawnTimer -= spawnQueue[0].spawnTime;		
 						Vector3 temp = this.transform.position;
-						temp.x -= this.transform.lossyScale.x * 1.5f;
-						temp.z -= this.transform.lossyScale.z * 1.5f;
+						temp.x -= this.transform.lossyScale.x * 3.5f;
+						temp.z -= this.transform.lossyScale.z * 3.5f;
 						Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
 						//Instantiate(spawnQueue[0], this.transform.position, this.transform.rotation);
 						spawnQueue.RemoveAt(0);
@@ -60,12 +62,23 @@ public class UnitBuilding : Building {
 	}
 	
 	void OnGUI(){
+		Vector3 initialmousepos = Vector3.zero;
 		//GameObject temp = unitBuildingList.Find(i => i.GetComponent<UnitBuilding>().selected == true);
 		if (networkView.isMine) {
 			if (selected == true){
-				if (GUI.Button (new Rect (100, 100, 200, 100), "SPAWN")) {
-					AddToQueue(UnitPrefabs[0].GetComponent<Unit>());
+				if(initialmousepos == Vector3.zero)
+				{
+					initialmousepos = Input.mousePosition;
 				}
+
+					if (GUI.Button (new Rect (100, 200, 100, 200), "", spawnunits)) {
+						//Vector3 temp = this.transform.position;
+	//					temp.x -= this.transform.lossyScale.x * 3.5f;
+	//					temp.z -= this.transform.lossyScale.z * 3.5f;
+	//					Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
+					Debug.Log("hi");
+						AddToQueue(UnitPrefabs[0].GetComponent<Unit>());
+					}
 				else{
 					if (!hover){
 						Event e = Event.current;
