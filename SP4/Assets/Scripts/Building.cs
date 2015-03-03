@@ -16,6 +16,8 @@ public class Building : MonoBehaviour {
 	public bool canPlace = true;
 	public float placeBufferTime = 0.01f;
 
+	public int cost = 0;
+
 	// Use this for initialization
 	void Start () {
 		

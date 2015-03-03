@@ -1,4 +1,5 @@
 ﻿<Properties>
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UnitBuilding.cs">
     <Files>
@@ -6,6 +7,15 @@
       <File FileName="Assets\Scripts\BaseBuilding.cs" Line="13" Column="14" />
       <File FileName="Assets\Scripts\Building.cs" Line="50" Column="6" />
       <File FileName="Assets\Scripts\UnitBuilding.cs" Line="71" Column="19" />
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Networking.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Building.cs" Line="19" Column="22" />
+      <File FileName="Assets\Scripts\Networking.cs" Line="63" Column="24" />
+      <File FileName="Assets\Scripts\Gold.cs" Line="15" Column="21" />
+      <File FileName="Assets\Scripts\ResourceBuilding.cs" Line="15" Column="23" />
+>>>>>>> baeaf180439bbd4da4935308283c379926894afe
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
