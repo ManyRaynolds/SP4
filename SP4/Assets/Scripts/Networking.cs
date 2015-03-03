@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -28,7 +28,7 @@ public class Networking : MonoBehaviour {
 	public List<string> chatLog = new List<string>();
 	public string currentMessage = "";
 
-	public string playername = "default";
+	public string playername = " default";
 
 	public GameObject playerObject;
 
@@ -307,14 +307,14 @@ public class Networking : MonoBehaviour {
 			this.networkView.RPC ("Chat", RPCMode.All, "Server started");
 			Vector3 temp = playerObject.transform.position;
 			temp.x += 20;
-			Network.Instantiate(playerObject, temp, playerObject.transform.rotation, 0);
+			//Network.Instantiate(playerObject, temp, playerObject.transform.rotation, 0);
 
 			playerInfoList.Clear();
 			networkView.RPC("AddPlayer", RPCMode.All, playername, Network.player, false);
 		}
 		else if (Network.peerType == NetworkPeerType.Client) {
 			this.networkView.RPC ("Chat", RPCMode.All, playername + " has joined the server");
-			Network.Instantiate(playerObject, playerObject.transform.position, playerObject.transform.rotation, 0);
+			//Network.Instantiate(playerObject, playerObject.transform.position, playerObject.transform.rotation, 0);
 			
 			playerInfoList.Clear();
 			networkView.RPC("AddPlayer", RPCMode.All, playername, Network.player, false);

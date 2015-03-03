@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Units : MonoBehaviour 
 {
-	public float spawnTime;
+	/*public float spawnTime;
 	
 	public float health;
 	public float max_health;
@@ -24,16 +24,7 @@ public class Units : MonoBehaviour
 	Vector3 direction;
 	
 	public float rtime;
-	
-	public GameObject Bullet;
 	public GameObject hptext;
-	
-	public Camera camera1;
-	
-	public int var = 1;
-
-	public GameObject j_unit;
-	public GameObject b_unit;
 
 	//public BritishUnit ba_unit;
 	//public JapanUnit ja_unit;
@@ -277,7 +268,7 @@ public class Units : MonoBehaviour
 					bulletpos.x += 0.05f;
 					Bullet.transform.position = bulletpos;*/
 
-					attack_timer += Time.deltaTime;
+				/*	attack_timer += Time.deltaTime;
 					
 					if (attack_timer >= attack_time)
 					{
@@ -364,5 +355,5 @@ public class Units : MonoBehaviour
 			}
 			break;
 		}
-	}
+	}*/
 }

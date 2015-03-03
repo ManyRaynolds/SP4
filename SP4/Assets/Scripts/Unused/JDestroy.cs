@@ -3,7 +3,7 @@ using System.Collections;
 
 public class JDestroy : MonoBehaviour 
 {	
-	public Units tank, human;
+	/*public Units tank, human;
 	public Units Ibullet;
 
 	void OnCollisionEnter2D(Collision2D col)
@@ -35,5 +35,5 @@ public class JDestroy : MonoBehaviour
 		else if (col.gameObject.tag == "BBullet") 
 		{
 		}
-	}
+	}*/
 }

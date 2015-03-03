@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour {
 
-	//T - Tank, S - Soldier
+	/*//T - Tank, S - Soldier
 	private enum State{
 		ATTACK,
 		SEEK,
@@ -73,5 +73,5 @@ public class EnemyAI : MonoBehaviour {
 	void OnCollisionEnter(Collision Col){
 				//moveSpeed = 0;
 		}
-
+	*/
 }

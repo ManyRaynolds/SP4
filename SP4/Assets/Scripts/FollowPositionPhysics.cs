@@ -4,7 +4,7 @@ using System.Collections;
 //From: http://answers.unity3d.com/questions/195698/stopping-a-rigidbody-at-target.html
 [RequireComponent(typeof(Rigidbody))]
 public class FollowPositionPhysics : MonoBehaviour
-{
+{/*
 	public float toVel = 2.5f;
 	public float maxVel = 15.0f;
 	public float maxForce = 40.0f;
@@ -28,6 +28,7 @@ public class FollowPositionPhysics : MonoBehaviour
 			Vector3 error = tgtVel - rigidbody.velocity;
 			// calc a force proportional to the error (clamped to maxForce)
 			Vector3 force = Vector3.ClampMagnitude(gain * error, maxForce);
+			force.y = 0;
 			rigidbody.AddForce(force);
 		}
 	}
@@ -43,7 +44,8 @@ public class FollowPositionPhysics : MonoBehaviour
 	}
 
 	void OnTriggerExit(Collider other) {
-		trigger = false;
+		rigidbody.velocity = Vector3.zero;
 		toVel = 0.0f;
-	}
+		trigger = false;
+	}*/
 }
