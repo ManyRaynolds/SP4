@@ -2,13 +2,13 @@
 using System.Collections;
 
 public class PlayerInfo: MonoBehaviour {
-
+	
 	public float player_health = 100;
-
+	
 	void Awake(){
-
+		
 	}
-
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -16,6 +16,6 @@ public class PlayerInfo: MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 }
