@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,6 +8,8 @@ public class Networking : MonoBehaviour {
 
 	public static AudioSource sfx;
 	public bool build= false;
+	public bool resource = false;
+
 	public string ipAddress = "127.0.0.1";
 	public int port = 25167;
 	public int maxConnections = 10;
@@ -15,7 +17,7 @@ public class Networking : MonoBehaviour {
 	public GUIStyle unitstyle;
 	public GUIStyle resourcestyle;
 	public GUIStyle buildingstyle;
-	public GUIStyle building2style;
+	public GUIStyle resourcebuildingstyle;
 
 	public GameObject[] UnitPrefabs;
 	public GameObject[] UnitBuildingPrefabs;
@@ -26,7 +28,7 @@ public class Networking : MonoBehaviour {
 	public List<string> chatLog = new List<string>();
 	public string currentMessage = "";
 
-	public string playername = "default";
+	public string playername = " default";
 
 	public GameObject playerObject;
 
@@ -70,105 +72,99 @@ public class Networking : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		if (Network.peerType == NetworkPeerType.Disconnected) {
-			//ip text box
-			GUI.BeginGroup (new Rect (10, 10, 800, 600));
-			GUI.Label(new Rect(0.0f, 0.0f, 100, 25), "IP: ");
-			ipAddress = GUI.TextField(new Rect(40.0f, 0.0f, 100, 25), ipAddress);
-			//port text box
-			GUI.Label(new Rect(0.0f, 30.0f, 100, 25), "Port: ");
-			string tempport;
-			tempport = GUI.TextField(new Rect(40.0f, 30.0f, 100, 25), port.ToString());
-			port = int.Parse(tempport);
-			//player name text box
-			GUI.Label(new Rect(0.0f, 60.0f, 100, 25), "Name: ");
-			playername = GUI.TextField(new Rect(40.0f, 60.0f, 100, 25), playername);
+				if (Network.peerType == NetworkPeerType.Disconnected) {
+						//ip text box
+						GUI.BeginGroup (new Rect (10, 10, 800, 600));
+						GUI.Label (new Rect (0.0f, 0.0f, 100, 25), "IP: ");
+						ipAddress = GUI.TextField (new Rect (40.0f, 0.0f, 100, 25), ipAddress);
+						//port text box
+						GUI.Label (new Rect (0.0f, 30.0f, 100, 25), "Port: ");
+						string tempport;
+						tempport = GUI.TextField (new Rect (40.0f, 30.0f, 100, 25), port.ToString ());
+						port = int.Parse (tempport);
+						//player name text box
+						GUI.Label (new Rect (0.0f, 60.0f, 100, 25), "Name: ");
+						playername = GUI.TextField (new Rect (40.0f, 60.0f, 100, 25), playername);
 
 
-			//connect button
-			if (GUI.Button(new Rect(0.0f, 90.0f, 125, 25),"Connect")){
-				print ("Connecting to " + ipAddress + " : " + port.ToString());
-				Network.Connect(ipAddress, port);
-				StartCoroutine (SendJoinMessage ());
-				//StartCoroutine(OnConnect ());
-			}
-			//host server button
-			if (GUI.Button(new Rect(0.0f, 120.0f, 125, 25),"Host")){
-				print ("Hosting server on " + ipAddress + " : " + port.ToString());
-				Network.InitializeServer(maxConnections, port, false);
-				ipAddress = Network.player.ipAddress;
-				StartCoroutine (SendJoinMessage ());
-				//StartCoroutine(OnConnect ());
-			}
-			GUI.EndGroup ();
-		}
-		else{
-			GUI.BeginGroup (new Rect (10, 10, Screen.width, Screen.height));
-			//disconnect button
-			if (GUI.Button (new Rect(0.0f, 0.0f, 125, 25), "Disconnect")){
-				Network.Disconnect(200);
-			}
-			//display server info
-			GUI.Label(new Rect(0.0f, 30.0f, 200, 25), "IP: " + ipAddress);
-			GUI.Label(new Rect(0.0f, 45.0f, 100, 25), "Port: " + port);
-			GUI.Label(new Rect(0.0f, 60.0f, 200, 25), "Players: " + (Network.connections.Length + 1));
+						//connect button
+						if (GUI.Button (new Rect (0.0f, 90.0f, 125, 25), "Connect")) {
+								print ("Connecting to " + ipAddress + " : " + port.ToString ());
+								Network.Connect (ipAddress, port);
+								StartCoroutine (SendJoinMessage ());
+								//StartCoroutine(OnConnect ());
+						}
+						//host server button
+						if (GUI.Button (new Rect (0.0f, 120.0f, 125, 25), "Host")) {
+								print ("Hosting server on " + ipAddress + " : " + port.ToString ());
+								Network.InitializeServer (maxConnections, port, false);
+								ipAddress = Network.player.ipAddress;
+								StartCoroutine (SendJoinMessage ());
+								//StartCoroutine(OnConnect ());
+						}
+						GUI.EndGroup ();
+				} else {
+						GUI.BeginGroup (new Rect (10, 10, Screen.width, Screen.height));
+						//disconnect button
+						if (GUI.Button (new Rect (0.0f, 0.0f, 125, 25), "Disconnect")) {
+								Network.Disconnect (200);
+						}
+						//display server info
+						GUI.Label (new Rect (0.0f, 30.0f, 200, 25), "IP: " + ipAddress);
+						GUI.Label (new Rect (0.0f, 45.0f, 100, 25), "Port: " + port);
+						GUI.Label (new Rect (0.0f, 60.0f, 200, 25), "Players: " + (Network.connections.Length + 1));
 
-			//display connected players
-			int playerIndex = 0;
-			foreach (PlayerInformation pi in playerInfoList){
-				++playerIndex;
-				GUI.Label(new Rect(0.0f, 200 + 12.5f * playerIndex, Screen.width, 25), pi.name + " (" + pi.ready + ")");
-			}
+						//display connected players
+						int playerIndex = 0;
+						foreach (PlayerInformation pi in playerInfoList) {
+								++playerIndex;
+								GUI.Label (new Rect (0.0f, 200 + 12.5f * playerIndex, Screen.width, 25), pi.name + " (" + pi.ready + ")");
+						}
 
-			//ready button
-			if (GUI.Button (new Rect(0.0f, 85.0f, 125, 25), "Ready")){
-				this.networkView.RPC ("UpdateReady", RPCMode.All, Network.player, !playerInfoList[0].ready);
-			}
+						//ready button
+						if (GUI.Button (new Rect (0.0f, 85.0f, 125, 25), "Ready")) {
+								this.networkView.RPC ("UpdateReady", RPCMode.All, Network.player, !playerInfoList [0].ready);
+						}
 
 
-			//chat input
-			GUI.SetNextControlName("chatfield");
-			currentMessage = GUI.TextField(new Rect(0.0f, Screen.height/100*95, Screen.width/100*22, (float)(Screen.height/100*2.5)), currentMessage);
+						//chat input
+						GUI.SetNextControlName ("chatfield");
+						currentMessage = GUI.TextField (new Rect (0.0f, Screen.height / 100 * 95, 160, 20), currentMessage);
 
-			if (GUI.Button(new Rect(Screen.width/100*25, Screen.height/100*95, Screen.width/100*8, (float)(Screen.height/100*2.5)), "Send")){
-				if (currentMessage.Length > 0){
-					string temp = "[" + playername + "]: " + currentMessage;
-					this.networkView.RPC ("Chat", RPCMode.All, temp);
-					currentMessage = "";
-				}
-			}
-			if (Event.current.isKey && Event.current.keyCode == KeyCode.Return){ 
-				if (GUI.GetNameOfFocusedControl() == "chatfield"){	
-					if (currentMessage.Length > 0){
-						string temp = "[" + playername + "]: " + currentMessage;
-						this.networkView.RPC ("Chat", RPCMode.All, temp);
-						currentMessage = "";
-					}
-				}
-				else{
-					GUI.FocusControl("chatfield");
-				}
+						if (GUI.Button (new Rect (Screen.width / 100 * 25, Screen.height / 100 * 95, 60, 20), "Send")) {
+								if (currentMessage.Length > 0) {
+										string temp = "[" + playername + "]: " + currentMessage;
+										this.networkView.RPC ("Chat", RPCMode.All, temp);
+										currentMessage = "";
+								}
+						}
+						if (Event.current.isKey && Event.current.keyCode == KeyCode.Return) { 
+								if (GUI.GetNameOfFocusedControl () == "chatfield") {	
+										if (currentMessage.Length > 0) {
+												string temp = "[" + playername + "]: " + currentMessage;
+												this.networkView.RPC ("Chat", RPCMode.All, temp);
+												currentMessage = "";
+										}
+								} else {
+										GUI.FocusControl ("chatfield");
+								}
 
-			}
-			//chat log
-			int chatindex = 0;
-			foreach(string msg in chatLog){
-				++chatindex;
-				GUI.Label(new Rect(0.0f, Screen.height - 95 - 12.5f * (chatLog.Count - chatindex), Screen.width, 25), msg);
-			}
+						}
+						//chat log
+						int chatindex = 0;
+						foreach (string msg in chatLog) {
+								++chatindex;
+								GUI.Label (new Rect (0.0f, Screen.height - 95 - 12.5f * (chatLog.Count - chatindex), Screen.width, 25), msg);
+						}
+
 			//=======================================
 			//      Enforces it to build function
 			//=======================================
-			if (GUI.Button (new Rect(Screen.width/100*37 , Screen.height/100, Screen.width/100*15, Screen.height/100*5), "", unitstyle)){
+
+			if (GUI.Button (new Rect (Screen.width / 100 * 37, Screen.height / 100, Screen.width / 100 * 15, Screen.height / 100 * 5), "", unitstyle)) 
+			{
 				//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
 				//sfx = this.audio;
-				if (gold >= UnitBuildingPrefabs[0].GetComponent<Building>().cost){
-					//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
-					//sfx = this.audio;
-					gold -= UnitBuildingPrefabs[0].GetComponent<Building>().cost;
-					Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
-				}
-
 				build = true;
 				//Debug.Log("build: " + build);
 				//audio.Play ();
@@ -176,32 +172,57 @@ public class Networking : MonoBehaviour {
 			//===========================
 			//  If its in build function
 			//===========================
-			if(build == true)
+			if (build == true) 
 			{
-				if(GUI.Button(new Rect(200.0f, Screen.height/100*5, 100,100), "", buildingstyle))
+				if (GUI.Button (new Rect (Screen.width / 100 * 39, Screen.height / 100 * 7, 80, 60), "", buildingstyle))
 				{
-					Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
+					if (gold >= UnitBuildingPrefabs [0].GetComponent<Building> ().cost) 
+					{
+						//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
+						//sfx = this.audio;
+						gold -= UnitBuildingPrefabs [0].GetComponent<Building> ().cost;
+						Network.Instantiate (UnitBuildingPrefabs [0], Vector3.zero, Quaternion.identity, 0);
+						build = false;
+					}
+				} 
+				else if (Input.GetMouseButtonDown (1)) 
+				{
 					build = false;
 				}
 			}
 
-			if (GUI.Button (new Rect(Screen.width/100*60, Screen.height/100, Screen.width/100*15, Screen.height/100*5), "", resourcestyle)){
-				if (gold >= UnitBuildingPrefabs[1].GetComponent<Building>().cost){
-					gold -= UnitBuildingPrefabs[1].GetComponent<Building>().cost;
-				Network.Instantiate(UnitBuildingPrefabs[1], Vector3.zero, Quaternion.identity, 0);
+			//==========================
+			//    Resources Building
+			//==========================
+			if (GUI.Button (new Rect (Screen.width / 100 * 60, Screen.height / 100, Screen.width / 100 * 15, Screen.height / 100 * 5), "", resourcestyle)) 
+			{
+				//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
+				//sfx = this.audio;
+				resource = true;
+				//Debug.Log("build: " + build);
+				//audio.Play ();
+			}
+			//===========================
+			//  If its in build function
+			//===========================
+			if (resource == true) 
+			{
+				if (GUI.Button (new Rect (Screen.width / 100 * 60, Screen.height / 100 * 7, 80, 60), "", resourcebuildingstyle))
+				{
+					if (gold >= UnitBuildingPrefabs [1].GetComponent<Building> ().cost) 
+					{
+						//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
+						//sfx = this.audio;
+						gold -= UnitBuildingPrefabs [1].GetComponent<Building> ().cost;
+						Network.Instantiate (UnitBuildingPrefabs [1], Vector3.zero, Quaternion.identity, 0);
+						resource = false;
+					}
+				}
+				else if (Input.GetMouseButtonDown (1)) 
+				{
+					resource = false;
 				}
 			}
-
-//				if (GUI.Button (new Rect(400.0f, 0.0f, 100, 25), "Base")){
-//				if (gold >= UnitBuildingPrefabs[2].GetComponent<Building>().cost){
-//					gold -= UnitBuildingPrefabs[2].GetComponent<Building>().cost;
-//						Network.Instantiate(UnitBuildingPrefabs[2], Vector3.zero, Quaternion.identity, 0);
-//					}
-//			}
-//			if (GUI.Button (new Rect(200.0f, 0.0f, 125, 25), "Units")){
-//				Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
-//			}
-
 			GUI.EndGroup ();
 		}
 	}
@@ -286,14 +307,14 @@ public class Networking : MonoBehaviour {
 			this.networkView.RPC ("Chat", RPCMode.All, "Server started");
 			Vector3 temp = playerObject.transform.position;
 			temp.x += 20;
-			Network.Instantiate(playerObject, temp, playerObject.transform.rotation, 0);
+			//Network.Instantiate(playerObject, temp, playerObject.transform.rotation, 0);
 
 			playerInfoList.Clear();
 			networkView.RPC("AddPlayer", RPCMode.All, playername, Network.player, false);
 		}
 		else if (Network.peerType == NetworkPeerType.Client) {
 			this.networkView.RPC ("Chat", RPCMode.All, playername + " has joined the server");
-			Network.Instantiate(playerObject, playerObject.transform.position, playerObject.transform.rotation, 0);
+			//Network.Instantiate(playerObject, playerObject.transform.position, playerObject.transform.rotation, 0);
 			
 			playerInfoList.Clear();
 			networkView.RPC("AddPlayer", RPCMode.All, playername, Network.player, false);
