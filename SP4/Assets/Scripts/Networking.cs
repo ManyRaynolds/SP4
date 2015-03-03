@@ -158,17 +158,14 @@ public class Networking : MonoBehaviour {
 			//      Enforces it to build function
 			//=======================================
 			if (GUI.Button (new Rect(200.0f, 0.0f, 80, 25), "", unitstyle)){
-<<<<<<< HEAD
 				//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
 				//sfx = this.audio;
-=======
 				if (gold >= UnitBuildingPrefabs[0].GetComponent<Building>().cost){
-					AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
-					sfx = this.audio;
+					//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
+					//sfx = this.audio;
 					gold -= UnitBuildingPrefabs[0].GetComponent<Building>().cost;
 					Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
 				}
->>>>>>> baeaf180439bbd4da4935308283c379926894afe
 
 				build = true;
 				//Debug.Log("build: " + build);
@@ -192,14 +189,11 @@ public class Networking : MonoBehaviour {
 				Network.Instantiate(UnitBuildingPrefabs[1], Vector3.zero, Quaternion.identity, 0);
 				}
 			}
-<<<<<<< HEAD
-			if (GUI.Button (new Rect(750.0f, 0.0f, 100, 25), "Base")){
-=======
+
 				if (GUI.Button (new Rect(400.0f, 0.0f, 100, 25), "Base")){
 				if (gold >= UnitBuildingPrefabs[2].GetComponent<Building>().cost){
 					gold -= UnitBuildingPrefabs[2].GetComponent<Building>().cost;
->>>>>>> baeaf180439bbd4da4935308283c379926894afe
-				Network.Instantiate(UnitBuildingPrefabs[2], Vector3.zero, Quaternion.identity, 0);
+						Network.Instantiate(UnitBuildingPrefabs[2], Vector3.zero, Quaternion.identity, 0);
 					}
 			}
 //			if (GUI.Button (new Rect(200.0f, 0.0f, 125, 25), "Units")){
