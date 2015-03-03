@@ -8,7 +8,7 @@ public class UnitsFireManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Rigidbody projectileRigidInstance;
-		projectileRigidInstance = projectileInstance.GetComponent<Rigidbody>();
+		//projectileRigidInstance = projectileInstance.GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame

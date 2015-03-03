@@ -167,6 +167,8 @@ public class UnitsManager : MonoBehaviour {
 	}
 			
 	private bool TargetInRange(UnitsControl uc) { // Check whether in range or not
+		if (uc == null)
+						return false;
 			Vector3 targetLocation = uc.transform.position;
 			Vector3 direction = targetLocation - transform.position;
 			if(direction.sqrMagnitude < weaponRange * weaponRange) {

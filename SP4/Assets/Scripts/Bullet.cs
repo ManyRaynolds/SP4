@@ -21,11 +21,13 @@ public class Bullet : MonoBehaviour {
 			this.gameObject.rigidbody.velocity = newDir * speed;
 		}
 		else{
+			//Destroy (this);
+			//Network.Destroy(gameObject);
 			Network.Destroy(this.gameObject);
 		}
 	}
 	
-	void OnCollision(Collision coll){
+	void OnCollisionEnter(Collision coll){
 		if (coll.gameObject == target) {
 			//if target is a building
 			if (target.GetComponent<Building>() != null){	

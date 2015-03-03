@@ -46,10 +46,12 @@ public class Networking : MonoBehaviour {
 	void Start () {
 		Application.runInBackground = true;
 
-		gameObject.AddComponent<NetworkView>();
-		gameObject.networkView.observed = this;
-		gameObject.networkView.stateSynchronization = NetworkStateSynchronization.ReliableDeltaCompressed;
-		gameObject.networkView.viewID = Network.AllocateViewID();
+		if (!gameObject.GetComponent<NetworkView> ()) {
+			gameObject.AddComponent<NetworkView>();
+			gameObject.networkView.observed = this;
+			gameObject.networkView.stateSynchronization = NetworkStateSynchronization.ReliableDeltaCompressed;
+			gameObject.networkView.viewID = Network.AllocateViewID();
+		}
 	}
 	
 	// Update is called once per frame
