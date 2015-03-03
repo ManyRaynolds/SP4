@@ -72,6 +72,11 @@
      <Compile Include="Assets\Scripts\Networking.cs" />
      <Compile Include="Assets\Scripts\PathRequest.cs" />
      <Compile Include="Assets\Scripts\Pathfinder.cs" />
+     <Compile Include="Assets\Scripts\PongScripts\BallControl.cs" />
+     <Compile Include="Assets\Scripts\PongScripts\PongGameManager.cs" />
+     <Compile Include="Assets\Scripts\PongScripts\PongGameSetup.cs" />
+     <Compile Include="Assets\Scripts\PongScripts\PongPlayerControls.cs" />
+     <Compile Include="Assets\Scripts\PongScripts\PongSideWalls.cs" />
      <Compile Include="Assets\Scripts\ResourceBuilding.cs" />
      <Compile Include="Assets\Scripts\SFXSound.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
