@@ -231,6 +231,10 @@ public class UnitsManager : MonoBehaviour {
 			GameObject go = Instantiate (Bullet, this.gameObject.transform.position + 2 * new Vector3(1,0,0), this.gameObject.transform.rotation) as GameObject;
 			go.rigidbody.velocity = new Vector3(1, 0, 0);
 			go.GetComponent<Bullet>().damage = damage;
+			if( go.tag == "SelectableUnits")
+			{
+				Debug.Log("Hit!");
+			}
 		}
 	}
 
