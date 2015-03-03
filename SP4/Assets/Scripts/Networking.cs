@@ -7,13 +7,15 @@ using System.Collections.Generic;
 public class Networking : MonoBehaviour {
 
 	public static AudioSource sfx;
-
+	public bool build= false;
 	public string ipAddress = "127.0.0.1";
 	public int port = 25167;
 	public int maxConnections = 10;
 
 	public GUIStyle unitstyle;
 	public GUIStyle resourcestyle;
+	public GUIStyle buildingstyle;
+	public GUIStyle building2style;
 
 	public GameObject[] UnitPrefabs;
 	public GameObject[] UnitBuildingPrefabs;
@@ -87,7 +89,7 @@ public class Networking : MonoBehaviour {
 			GUI.EndGroup ();
 		}
 		else{
-			GUI.BeginGroup (new Rect (10, 10, 800, 600));
+			GUI.BeginGroup (new Rect (10, 10, Screen.width, Screen.height));
 			//disconnect button
 			if (GUI.Button (new Rect(0.0f, 0.0f, 125, 25), "Disconnect")){
 				Network.Disconnect(200);
@@ -114,7 +116,7 @@ public class Networking : MonoBehaviour {
 			GUI.SetNextControlName("chatfield");
 			currentMessage = GUI.TextField(new Rect(0.0f, Screen.height/100*95, 200, 25), currentMessage);
 
-			if (GUI.Button(new Rect(Screen.width/100*30, Screen.height/100*95, 50, 25), "Send")){
+			if (GUI.Button(new Rect(Screen.width/100*19, Screen.height/100*95, 50, 25), "Send")){
 				if (currentMessage.Length > 0){
 					string temp = "[" + playername + "]: " + currentMessage;
 					this.networkView.RPC ("Chat", RPCMode.All, temp);
@@ -140,18 +142,33 @@ public class Networking : MonoBehaviour {
 				++chatindex;
 				GUI.Label(new Rect(0.0f, Screen.height - 95 - 12.5f * (chatLog.Count - chatindex), Screen.width, 25), msg);
 			}
-			
+			//=======================================
+			//      Enforces it to build function
+			//=======================================
 			if (GUI.Button (new Rect(200.0f, 0.0f, 80, 25), "", unitstyle)){
-				AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
-				sfx = this.audio;
-				Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
+				//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
+				//sfx = this.audio;
 
+				build = true;
+				//Debug.Log("build: " + build);
 				//audio.Play ();
 			}
+			//===========================
+			//  If its in build function
+			//===========================
+			if(build == true)
+			{
+				if(GUI.Button(new Rect(200.0f, Screen.height/100*4, 100,100), "", buildingstyle))
+				{
+					Network.Instantiate(UnitBuildingPrefabs[0], Vector3.zero, Quaternion.identity, 0);
+					build = false;
+				}
+			}
+
 			if (GUI.Button (new Rect(300.0f, 0.0f, 80, 25), "", resourcestyle)){
 				Network.Instantiate(UnitBuildingPrefabs[1], Vector3.zero, Quaternion.identity, 0);
 			}
-			if (GUI.Button (new Rect(400.0f, 0.0f, 100, 25), "Base")){
+			if (GUI.Button (new Rect(750.0f, 0.0f, 100, 25), "Base")){
 				Network.Instantiate(UnitBuildingPrefabs[2], Vector3.zero, Quaternion.identity, 0);
 			}
 //			if (GUI.Button (new Rect(200.0f, 0.0f, 125, 25), "Units")){
