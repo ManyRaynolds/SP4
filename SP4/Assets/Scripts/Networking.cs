@@ -5,10 +5,11 @@ using System.Collections.Generic;
 [RequireComponent (typeof (NetworkView))]
 
 public class Networking : MonoBehaviour {
-
-	public static AudioSource sfx;
+	
 	public bool build= false;
 	public bool resource = false;
+
+	public AudioClip[] AudioClipSFX;
 
 	public string ipAddress = "127.0.0.1";
 	public int port = 25167;
@@ -21,6 +22,7 @@ public class Networking : MonoBehaviour {
 
 	public GameObject[] UnitPrefabs;
 	public GameObject[] UnitBuildingPrefabs;
+
 
 	//public GameObject GameController;
 
@@ -183,11 +185,20 @@ public class Networking : MonoBehaviour {
 						gold -= UnitBuildingPrefabs [0].GetComponent<Building> ().cost;
 						Network.Instantiate (UnitBuildingPrefabs [0], Vector3.zero, Quaternion.identity, 0);
 						build = false;
+						PlaySound(1);
+						if(Input.GetMouseButtonDown(1))
+						{
+							gold += UnitBuildingPrefabs [0].GetComponent<Building> ().cost;
+							build = false;
+							PlaySound(2);
+						}
 					}
+
 				} 
 				else if (Input.GetMouseButtonDown (1)) 
 				{
 					build = false;
+					PlaySound(2);
 				}
 			}
 
@@ -216,11 +227,13 @@ public class Networking : MonoBehaviour {
 						gold -= UnitBuildingPrefabs [1].GetComponent<Building> ().cost;
 						Network.Instantiate (UnitBuildingPrefabs [1], Vector3.zero, Quaternion.identity, 0);
 						resource = false;
+						PlaySound(1);
 					}
 				}
 				else if (Input.GetMouseButtonDown (1)) 
 				{
 					resource = false;
+					PlaySound(2);
 				}
 			}
 			GUI.EndGroup ();
@@ -322,5 +335,12 @@ public class Networking : MonoBehaviour {
 		else {
 			StartCoroutine (SendJoinMessage ());
 		}
+	}
+
+	void PlaySound(int clip)
+	{
+		audio.volume = Settings.SFXSliderValue;
+		audio.clip = AudioClipSFX [clip];
+		audio.Play ();
 	}
 }
