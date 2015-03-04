@@ -78,8 +78,9 @@ public class UnitBuilding : Building {
 //					temp.x -= this.transform.lossyScale.x * 3.5f;
 //					temp.z -= this.transform.lossyScale.z * 3.5f;
 //					Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
-					if (network.gold >= UnitPrefabs[0].GetComponent<Unit>().cost){
-						network.gold -= UnitPrefabs[0].GetComponent<Unit>().cost;
+					Unit seeker = UnitPrefabs[0].transform.FindChild("Seeker").GetComponent<Unit>();
+					if (network.gold >= seeker.cost){
+						network.gold -= seeker.cost;
 						AddToQueue(UnitPrefabs[0]);
 					}
 				}

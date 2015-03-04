@@ -18,7 +18,7 @@ Platform assembly: C:\Users\gabriel\Desktop\SP4STUFF\SP4\test_Data\Managed\Syste
 Loading C:\Users\gabriel\Desktop\SP4STUFF\SP4\test_Data\Managed\System.Data.dll into Unity Child Domain
 Platform assembly: C:\Users\gabriel\Desktop\SP4STUFF\SP4\test_Data\Managed\System.Drawing.dll (this message is harmless)
 Loading C:\Users\gabriel\Desktop\SP4STUFF\SP4\test_Data\Managed\System.Drawing.dll into Unity Child Domain
-- Completed reload, in  0.094 seconds
+- Completed reload, in  0.057 seconds
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -28,43 +28,83 @@ Start Game
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-UnloadTime: 0.182608 ms
+UnloadTime: 0.210833 ms
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 300 unused Assets to reduce memory usage. Loaded Objects now: 141.
-Total: 0.633354 ms (FindLiveObjects: 0.008980 ms CreateObjectMapping: 0.031646 ms MarkObjects: 0.065430 ms  DeleteObjects: 0.199286 ms)
+Total: 0.738985 ms (FindLiveObjects: 0.011546 ms CreateObjectMapping: 0.035495 ms MarkObjects: 0.076977 ms  DeleteObjects: 0.233071 ms)
 
-UnloadTime: 0.175765 ms
+UnloadTime: 0.195865 ms
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 141.
-Total: 0.378045 ms (FindLiveObjects: 0.004704 ms CreateObjectMapping: 0.005987 ms MarkObjects: 0.070562 ms  DeleteObjects: 0.001710 ms)
+Total: 0.619669 ms (FindLiveObjects: 0.006414 ms CreateObjectMapping: 0.008125 ms MarkObjects: 0.084675 ms  DeleteObjects: 0.002565 ms)
 
 http://172.27.178.225/login.php?Username=&Password=
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
+The file 'C:/Users/gabriel/Desktop/SP4STUFF/SP4/test_Data/sharedassets1.assets' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 8425984 > 8425980]
+ 
+(Filename:  Line: 273)
+
+The file 'C:/Users/gabriel/Desktop/SP4STUFF/SP4/test_Data/sharedassets1.assets' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 8426160 > 8426156]
+ 
+(Filename:  Line: 273)
+
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-UnloadTime: 0.280968 ms
+The file 'C:/Users/gabriel/Desktop/SP4STUFF/SP4/test_Data/level0' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 72024 > 72020]
+ 
+(Filename:  Line: 273)
+
+The file 'C:/Users/gabriel/Desktop/SP4STUFF/SP4/test_Data/level0' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 72632 > 72628]
+ 
+(Filename:  Line: 273)
+
+The file 'C:/Users/gabriel/Desktop/SP4STUFF/SP4/test_Data/level0' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 74321 > 74320]
+ 
+(Filename:  Line: 273)
+
+UnloadTime: 0.251887 ms
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 659 unused Assets to reduce memory usage. Loaded Objects now: 1251.
-Total: 5.666408 ms (FindLiveObjects: 0.066286 ms CreateObjectMapping: 0.079543 ms MarkObjects: 3.634198 ms  DeleteObjects: 1.325725 ms)
+Unloading 751 unused Assets to reduce memory usage. Loaded Objects now: 1154.
+Total: 7.241883 ms (FindLiveObjects: 0.264717 ms CreateObjectMapping: 0.169778 ms MarkObjects: 4.788863 ms  DeleteObjects: 1.616102 ms)
+
+The file 'C:/Users/gabriel/Desktop/SP4STUFF/SP4/test_Data/sharedassets1.assets' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 8425984 > 8425980]
+ 
+(Filename:  Line: 273)
 
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-UnloadTime: 2.204553 ms
+The file 'C:/Users/gabriel/Desktop/SP4STUFF/SP4/test_Data/level0' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 72024 > 72020]
+ 
+(Filename:  Line: 273)
+
+The file 'C:/Users/gabriel/Desktop/SP4STUFF/SP4/test_Data/level0' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 72632 > 72628]
+ 
+(Filename:  Line: 273)
+
+The file 'C:/Users/gabriel/Desktop/SP4STUFF/SP4/test_Data/level0' is corrupted! Remove it and launch unity again!
+[Position out of bounds! 74321 > 74320]
+ 
+(Filename:  Line: 273)
+
+UnloadTime: 1.506623 ms
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 1251.
-Total: 4.910316 ms (FindLiveObjects: 0.045758 ms CreateObjectMapping: 0.014540 ms MarkObjects: 3.679530 ms  DeleteObjects: 0.758229 ms)
+Unloading 106 unused Assets to reduce memory usage. Loaded Objects now: 1154.
+Total: 6.162486 ms (FindLiveObjects: 0.078688 ms CreateObjectMapping: 0.034639 ms MarkObjects: 4.033627 ms  DeleteObjects: 1.374905 ms)
 
 WARNING: Shader Unsupported: 'Hidden/TerrainEngine/Details/BillboardWavingDoublePass' - Pass '' shader state not supported
-Hosting server on 127.0.0.1 : 25167
+Hosting server on  : 0
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at Networking.OnGUI () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
 
