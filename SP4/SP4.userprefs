@@ -1,11 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SFXSound.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Networking.cs">
     <Files>
-      <File FileName="Assets\Scripts\Bullet.cs" Line="42" Column="3" />
-      <File FileName="Assets\Scripts\UnitsFireManager.cs" Line="28" Column="16" />
-      <File FileName="Assets\Scripts\UnitsControl.cs" Line="17" Column="22" />
-      <File FileName="Assets\Scripts\SFXSound.cs" Line="29" Column="1" />
+      <File FileName="Assets\Scripts\UnitBuilding.cs" Line="82" Column="23" />
+      <File FileName="Assets\Scripts\Building.cs" Line="17" Column="39" />
+      <File FileName="Assets\Scripts\Unit.cs" Line="6" Column="32" />
+      <File FileName="Assets\Scripts\Networking.cs" Line="74" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
