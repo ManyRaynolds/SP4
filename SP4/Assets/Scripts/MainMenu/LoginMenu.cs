@@ -39,16 +39,16 @@ public class LoginMenu : MonoBehaviour {
 		//GUI.Label (new Rect (160, 40, 130, 100), "===Username===");
 		//Username = GUI.TextField (new Rect (25, 60, 375, 30), Username);
 
-		GUI.Label (new Rect (Screen.width/100*19, Screen.height/100*4, (float)Screen.width/100*20, (float)Screen.height), "===Username===");
+		GUI.Label (new Rect (Screen.width/100*20, Screen.height/100*4, (float)Screen.width/100*20, (float)Screen.height), "===Username===");
 		Username = GUI.TextField (new Rect (Screen.width/100*11, Screen.height/100*7, Screen.width/100*31, Screen.width/100*3), Username);
 
-		GUI.Label (new Rect (Screen.width/100*19, Screen.height/100*12, (float)Screen.width/100*20, (float)Screen.height), "===Password===");
+		GUI.Label (new Rect (Screen.width/100*20, Screen.height/100*12, (float)Screen.width/100*20, (float)Screen.height), "===Password===");
 		Password = GUI.TextField (new Rect (Screen.width/100*11, Screen.height/100*15, Screen.width/100*31, Screen.width/100*3), Password, '*');
 
-		GUI.Label (new Rect (Screen.width/100*19, Screen.height/100*20, (float)Screen.width/100*20, (float)Screen.height), "===IP Address===");
+		GUI.Label (new Rect (Screen.width/100*20, Screen.height/100*20, (float)Screen.width/100*20, (float)Screen.height), "===IP Address===");
 		url = GUI.TextField (new Rect (Screen.width/100*11, Screen.height/100*23, Screen.width/100*31, Screen.width/100*3), url);
 
-		if((GUI.Button (new Rect (Screen.width/100*11, Screen.height/100*33, Screen.width/100*14, Screen.width/100*5), "Login")))
+		if((GUI.Button (new Rect (Screen.width/100*11, Screen.height/100*33, Screen.width/100*14, Screen.height/100*5), "Login")))
 		{
 			StartCoroutine(HandleLogin());
 		}
@@ -58,7 +58,7 @@ public class LoginMenu : MonoBehaviour {
 			StartCoroutine(HandleLogin());
 		}
 
-		if(GUI.Button (new Rect (Screen.width/100*28, Screen.height/100*33, Screen.width/100*14, Screen.width/100*5), "Register"))
+		if(GUI.Button (new Rect (Screen.width/100*28, Screen.height/100*33, Screen.width/100*14, Screen.height/100*5), "Register"))
 		{
 
 			Initiate.Fade("Registration", Color.black, 0.5f);

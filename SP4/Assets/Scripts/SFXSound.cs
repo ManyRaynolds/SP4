@@ -4,14 +4,17 @@ using System.Collections;
 public class SFXSound : MonoBehaviour {
 
 	public static AudioSource sfx;
-	public static float volume = 0.5f;
+	public static bool StartBuildSFX = false;
+	//public static float volume = 0.5f;
 	// Use this for initialization
-	bool soundfix = false;
 
 	void Start () {
-		AudioClip units = AudioClip.Create ("Units", 44100, 1, 44100, false, true);
-		audio.clip = units;
-		audio.Play ();
+		if(StartBuildSFX)
+		{
+			sfx = this.audio;
+			sfx.volume = Settings.BGMSliderValue;
+
+		}
 		//audio.volume = MainMenu.
 		//sfx = this.audio;
 		//if (sfx.audio.isPlaying == false) 
@@ -23,6 +26,8 @@ public class SFXSound : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log (sfx.volume);
+		Debug.Log(Settings.BGMSliderValue);
 	}
 	void OnGUI()
 	{

@@ -10,8 +10,6 @@ public class MainMenu : MonoBehaviour {
 
 	bool buttonpressed = false;
 
-	public static string url = "127.0.0.1";
-
 //	public static AudioSource bgm;
 //	public static float volume = 0.5f;
 

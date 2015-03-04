@@ -28,6 +28,7 @@ public class Settings : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Sound.bgm.volume = BGMSliderValue;
+		SFXSound.sfx.volume = SFXSliderValue;
 	}
 
 	void OnGUI()

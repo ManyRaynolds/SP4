@@ -129,9 +129,9 @@ public class Networking : MonoBehaviour {
 
 						//chat input
 						GUI.SetNextControlName ("chatfield");
-						currentMessage = GUI.TextField (new Rect (0.0f, Screen.height / 100 * 95, 160, 20), currentMessage);
+						currentMessage = GUI.TextField (new Rect (0.0f, Screen.height / 100 * 92, 160, 20), currentMessage);
 
-						if (GUI.Button (new Rect (Screen.width / 100 * 25, Screen.height / 100 * 95, 60, 20), "Send")) {
+						if (GUI.Button (new Rect (Screen.width / 100 * 25, Screen.height / 100 * 92, 60, 20), "Send")) {
 								if (currentMessage.Length > 0) {
 										string temp = "[" + playername + "]: " + currentMessage;
 										this.networkView.RPC ("Chat", RPCMode.All, temp);
@@ -161,7 +161,7 @@ public class Networking : MonoBehaviour {
 			//      Enforces it to build function
 			//=======================================
 
-			if (GUI.Button (new Rect (Screen.width / 100 * 37, Screen.height / 100, Screen.width / 100 * 15, Screen.height / 100 * 5), "", unitstyle)) 
+			if (GUI.Button (new Rect (Screen.width / 100 * 34, Screen.height / 100, Screen.width / 100 * 15, Screen.height / 100 * 5), "", unitstyle)) 
 			{
 				//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
 				//sfx = this.audio;
@@ -174,7 +174,7 @@ public class Networking : MonoBehaviour {
 			//===========================
 			if (build == true) 
 			{
-				if (GUI.Button (new Rect (Screen.width / 100 * 39, Screen.height / 100 * 7, 80, 60), "", buildingstyle))
+				if (GUI.Button (new Rect (Screen.width / 100 * 36, Screen.height / 100 * 7, 80, 60), "", buildingstyle))
 				{
 					if (gold >= UnitBuildingPrefabs [0].GetComponent<Building> ().cost) 
 					{
@@ -207,7 +207,7 @@ public class Networking : MonoBehaviour {
 			//===========================
 			if (resource == true) 
 			{
-				if (GUI.Button (new Rect (Screen.width / 100 * 60, Screen.height / 100 * 7, 80, 60), "", resourcebuildingstyle))
+				if (GUI.Button (new Rect (Screen.width / 100 * 62, Screen.height / 100 * 7, 80, 60), "", resourcebuildingstyle))
 				{
 					if (gold >= UnitBuildingPrefabs [1].GetComponent<Building> ().cost) 
 					{

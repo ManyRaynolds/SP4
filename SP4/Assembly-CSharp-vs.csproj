@@ -100,8 +100,6 @@
      <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\Shooting.cs" />
      <Compile Include="Assets\Scripts\WJ &amp; Zoe&apos;s Scripts\test_grid.cs" />
      <Compile Include="Assets\WJ&apos;s Script\EnemyAI_Final.cs" />
-<<<<<<< HEAD
-     <Compile Include="Assets\WJ&apos;s Script\PlayerInfo.cs" />
  <Reference Include="MySql.Data">
  <HintPath>C:/Users/gabriel/Desktop/SP4STUFF/SP4/Assets/Plugins/MySql.Data.dll</HintPath>
  </Reference>
@@ -111,8 +109,6 @@
  <Reference Include="System.Drawing">
  <HintPath>C:/Users/gabriel/Desktop/SP4STUFF/SP4/Assets/Plugins/System.Drawing.dll</HintPath>
  </Reference>
-=======
->>>>>>> 7f5424a43622b120452081cee519a3f2230b57ec
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">

@@ -70,12 +70,8 @@ public class UnitBuilding : Building {
 		//GameObject temp = unitBuildingList.Find(i => i.GetComponent<UnitBuilding>().selected == true);
 		if (networkView.isMine) {
 			if (selected == true){
-				if(initialmousepos == Vector3.zero)
-				{
-					initialmousepos = Input.mousePosition;
-				}
 
-					if (GUI.Button (new Rect (100, 200, 100, 200), "spawning", spawnunits)) {
+					if (GUI.Button (new Rect (Screen.width-70, 10, 60, 70), "", spawnunits)) {
 
 						//Vector3 temp = this.transform.position;
 	//					temp.x -= this.transform.lossyScale.x * 3.5f;

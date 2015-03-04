@@ -3,8 +3,6 @@ using System.Collections;
 
 public class MainMenu2 : MonoBehaviour {
 
-	public string scene;
-
 	public GUIStyle StartGame;
 	public GUIStyle Settings;
 	public GUIStyle Credits;
