@@ -3,6 +3,8 @@ using System.Collections;
  
 public class ClickDetector : MonoBehaviour
 {
+	public AudioClip[] AudioClipSFX;
+
 	public bool HandleLeftClick = true;
 	public bool HandleRightClick = true;
 	public bool HandleMiddleClick = false;
@@ -25,10 +27,15 @@ public class ClickDetector : MonoBehaviour
             {*/
                 clickedGmObj = GetClickedGameObject();
                 clickedGmObjAcquired = true;
-            /*}*/
+			PlaySound(4);
+			/*}*/
+
  
             if (clickedGmObj != null)
+			{
                 clickedGmObj.SendMessage(OnLeftClickMethodName, null, SendMessageOptions.DontRequireReceiver);
+
+			}
         }
  
         // Right click
@@ -54,6 +61,14 @@ public class ClickDetector : MonoBehaviour
  
             if (clickedGmObj != null)
                 clickedGmObj.SendMessage(OnRightClickMethodName, null, SendMessageOptions.DontRequireReceiver);
+
+			bool press = false;
+			if (press == false)
+			{
+				int i = Random.Range(1,4);
+				PlaySound(i-1);
+			}
+			press = true;
         }
  
         // Middle click
@@ -125,4 +140,11 @@ public class ClickDetector : MonoBehaviour
 		 */
 
     }
+	void PlaySound(int clip)
+	{
+		//audio.volume = settings.SFXSliderValue;
+		audio.clip = AudioClipSFX [clip];
+		audio.Play ();
+	}
+
 }

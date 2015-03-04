@@ -135,21 +135,22 @@ public class Networking : MonoBehaviour {
 						int playerIndex = 0;
 						foreach (PlayerInformation pi in playerInfoList) {
 								++playerIndex;
-								GUI.Label (new Rect (0.0f, 200 + 12.5f * playerIndex, Screen.width, 25), pi.name + " (" + pi.ready + ")");
+								GUI.Label (new Rect (200.0f, 10 + 12.5f * playerIndex, Screen.width, 25), pi.name + " (" + pi.ready + ")");
 						}
 
 						//ready button
 				if (GUI.Button (new Rect (0.0f, 85.0f, 125, 25), "Ready")) {
 					this.networkView.RPC ("UpdateReady", RPCMode.All, Network.player, !playerInfoList [0].ready);
 				}
+				GUI.Window(0, new Rect(200, 10, 100, 200), LoginWindow, "Lobby");
 			}
 
 
 						//chat input
 						GUI.SetNextControlName ("chatfield");
-						currentMessage = GUI.TextField (new Rect (0.0f, Screen.height / 100 * 92, 160, 20), currentMessage);
+						currentMessage = GUI.TextField (new Rect (0.0f, Screen.height / 100 * 94, 180, 20), currentMessage);
 
-						if (GUI.Button (new Rect (Screen.width / 100 * 25, Screen.height / 100 * 92, 60, 20), "Send")) {
+						if (GUI.Button (new Rect (Screen.width / 100 * 25, Screen.height / 100 * 94, 60, 20), "Send")) {
 								if (currentMessage.Length > 0) {
 										string temp = "[" + playername + "]: " + currentMessage;
 										this.networkView.RPC ("Chat", RPCMode.All, temp);
@@ -172,8 +173,9 @@ public class Networking : MonoBehaviour {
 						int chatindex = 0;
 						foreach (string msg in chatLog) {
 								++chatindex;
-								GUI.Label (new Rect (0.0f, Screen.height - 95 - 12.5f * (chatLog.Count - chatindex), Screen.width, 25), msg);
+								GUI.Label (new Rect (0.0f, Screen.height - 25 - 12.5f * (chatLog.Count - chatindex), Screen.width, 25), msg);
 						}
+
 
 			//=======================================
 			//      Enforces it to build function
@@ -353,5 +355,10 @@ public class Networking : MonoBehaviour {
 		audio.volume = Settings.SFXSliderValue;
 		audio.clip = AudioClipSFX [clip];
 		audio.Play ();
+	}
+
+	void LoginWindow(int WindowID)
+	{
+
 	}
 }
