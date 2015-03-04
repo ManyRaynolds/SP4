@@ -15,7 +15,7 @@ public class Unit : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (healthCurrent <= 0){
-			Network.Destroy(gameObject);
+			Network.Destroy(transform.parent.gameObject);
 		}
 	}
 }

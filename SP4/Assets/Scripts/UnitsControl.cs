@@ -100,7 +100,7 @@ public class UnitsControl : MonoBehaviour {
 			}
 
 		}
-		if (um && found == false && gameObject.GetComponent<PathRequest>().isProcessingPath == false)
+		/*if (um && found == false && gameObject.GetComponent<PathRequest>().isProcessingPath == false)
 		{
 			//&& gameObject.GetComponent<PathRequest>().isProcessingPath == false
 			PathRequest.RequestPath(transform.position, target.position, OnPathFound);
@@ -109,7 +109,7 @@ public class UnitsControl : MonoBehaviour {
 		}
 		else{
 			found = true;
-		}
+		}*/
 	}
 	
 	public void HitBuilding() {
