@@ -110,9 +110,10 @@ public class Networking : MonoBehaviour {
 	void OnGUI(){
 		if (gameOver) {
 			if (playerInfoList[0].winner){
-				
+				GUI.Window(0, new Rect(Screen.width / 4, Screen.height /3, Screen.width/2, Screen.height/100*42), GUIWINDOWLOSE, "Game Over");
 			}
 			else{
+				GUI.Window(0, new Rect(Screen.width / 4, Screen.height /3, Screen.width/2, Screen.height/100*42), GUIWINDOWWIN, "Game Over");
 			
 			}
 			return;		
@@ -172,7 +173,7 @@ public class Networking : MonoBehaviour {
 				if (GUI.Button (new Rect (0.0f, 85.0f, 125, 25), "Ready")) {
 					this.networkView.RPC ("UpdateReady", RPCMode.All, Network.player, !playerInfoList [0].ready);
 				}
-				GUI.Window(0, new Rect(200, 10, 100, 200), LoginWindow, "Lobby");
+				GUI.Box(new Rect(150, 0, 200,150), "Lobby");
 			}
 
 
@@ -403,6 +404,25 @@ public class Networking : MonoBehaviour {
 
 	void LoginWindow(int WindowID)
 	{
-
 	}
+		void GUIWINDOWWIN (int WindowID)
+		{
+
+			GUI.Label (new Rect (Screen.width/100*20, Screen.height/100*4, (float)Screen.width/100*20, (float)Screen.height), "You WIN!");
+			if (GUI.Button (new Rect (0.0f, 90.0f, 125, 25), "Return To Main Menu"))
+			{
+				Network.Disconnect (200);
+				Initiate.Fade("Main Menu", Color.black, 0.5f);
+			}
+		}
+	void GUIWINDOWLOSE (int WindowID)
+		{
+			GUI.Label (new Rect (Screen.width/100*20, Screen.height/100*4, (float)Screen.width/100*20, (float)Screen.height), "You LOSE!");
+
+			if (GUI.Button (new Rect (0.0f, 90.0f, 125, 25), "Return To Main Menu"))
+			{
+				Network.Disconnect (200);
+				Initiate.Fade("Main Menu", Color.black, 0.5f);
+			}
+		}
 }
