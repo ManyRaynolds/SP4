@@ -14,8 +14,12 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!networkView.isMine) {
+			return;		
+		}
 		if (target != null) {
 			if ((target.transform.position - transform.position).sqrMagnitude <= 1.0f){ 
+				Debug.Log ("Bullet hit " + target);
 				//if target is a building
 				if (target.GetComponent<Building>() != null){	
 					target.GetComponent<Building>().SendDamage(damage);
@@ -35,21 +39,9 @@ public class Bullet : MonoBehaviour {
 
 		}
 		else{
+			Debug.Log ("Target " + target);
 			//Destroy (this);
 			//Network.Destroy(gameObject);
-			Network.Destroy(gameObject);
-		}
-	}
-
-	void OnTriggerEnter(Collider coll){
-		if (coll.gameObject == target) {
-			//if target is a building
-			if (target.GetComponent<Building>() != null){	
-				target.GetComponent<Building>().SendDamage(damage);
-			}
-			//else if target is a unit
-			
-			//destroy bullet after collision
 			Network.Destroy(gameObject);
 		}
 	}

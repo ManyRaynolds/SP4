@@ -1,47 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PongScripts\BallControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Unit.cs">
     <Files>
-      <File FileName="Assets\Scripts\PongScripts\BallControl.cs" Line="40" Column="21" />
-      <File FileName="Assets\Scripts\SFXSound.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FollowPositionPhysics.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Unit.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UnitsFireManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Networking.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UnitBuilding.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Bullet.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PongScripts\PongPlayerControls.cs" Line="29" Column="4" />
-      <File FileName="Assets\Scripts\PongScripts\PongGameManager.cs" Line="26" Column="43" />
-      <File FileName="Assets\Scripts\PongScripts\PongSideWalls.cs" Line="12" Column="32" />
-      <File FileName="Assets\Scripts\PongScripts\PongGameSetup.cs" Line="28" Column="1" />
-=======
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyLogic.cs">
-    <Files>
-      <File FileName="Assets\Scripts\EnemyLogic.cs" Line="107" Column="14" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UnitBuilding.cs">
-    <Files>
-<<<<<<< HEAD
-      <File FileName="Assets\Scripts\UnitBuilding.cs" Line="27" Column="35" />
-      <File FileName="Assets\Scripts\UnitsControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UnitsFireManager.cs" Line="1" Column="1" />
-=======
-<<<<<<< HEAD
-      <File FileName="Assets\Scripts\ResourceBuilding.cs" Line="27" Column="3" />
-      <File FileName="Assets\Scripts\Networking.cs" Line="211" Column="25" />
-      <File FileName="Assets\Scripts\Bullet.cs" Line="43" Column="1" />
-=======
-      <File FileName="Assets\Scripts\FollowPositionPhysics.cs" Line="19" Column="3" />
-      <File FileName="Assets\Scripts\Unit.cs" Line="19" Column="4" />
-      <File FileName="Assets\Scripts\UnitsFireManager.cs" Line="28" Column="38" />
-      <File FileName="Assets\Scripts\Networking.cs" Line="29" Column="31" />
-      <File FileName="Assets\Scripts\UnitBuilding.cs" Line="74" Column="32" />
->>>>>>> 079ca756ce4998b3273ad2fdd85eb4d78afc9892
->>>>>>> 78f727a5615101c10aa575b7fdb9bdba6d3aee32
->>>>>>> 7f5424a43622b120452081cee519a3f2230b57ec
->>>>>>> 5736c08e73526ac47627dd56f2ffba741f03df5b
+      <File FileName="c:\Users\user\Desktop\SP4\SP4\Assets\Scripts\Bullet.cs" Line="17" Column="29" />
+      <File FileName="Assets\Scripts\UnitsFireManager.cs" Line="62" Column="4" />
+      <File FileName="Assets\Scripts\UnitBuilding.cs" Line="22" Column="3" />
+      <File FileName="Assets\Scripts\Unit.cs" Line="22" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
