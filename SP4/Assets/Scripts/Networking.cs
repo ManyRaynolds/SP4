@@ -67,6 +67,7 @@ public class Networking : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (gameOver) {
 			return;		
 		}
@@ -108,12 +109,13 @@ public class Networking : MonoBehaviour {
 	}
 
 	void OnGUI(){
+
 		if (gameOver) {
 			if (playerInfoList[0].winner){
-				GUI.Window(0, new Rect(Screen.width / 4, Screen.height /3, Screen.width/2, Screen.height/100*42), GUIWINDOWLOSE, "Game Over");
+				GUI.Window(0, new Rect(Screen.width / 4, Screen.height /3, Screen.width/4, Screen.height/100*42), GUIWINDOWLOSE, "Game Over");
 			}
 			else{
-				GUI.Window(0, new Rect(Screen.width / 4, Screen.height /3, Screen.width/2, Screen.height/100*42), GUIWINDOWWIN, "Game Over");
+				GUI.Window(0, new Rect(Screen.width / 4, Screen.height /3, Screen.width/2, Screen.height/100*20), GUIWINDOWWIN, "Game Over");
 			
 			}
 			return;		
@@ -179,9 +181,9 @@ public class Networking : MonoBehaviour {
 
 						//chat input
 						GUI.SetNextControlName ("chatfield");
-						currentMessage = GUI.TextField (new Rect (0.0f, Screen.height / 100 * 94, 180, 20), currentMessage);
+						currentMessage = GUI.TextField (new Rect (0.0f, Screen.height -49, 190, 20), currentMessage);
 
-						if (GUI.Button (new Rect (Screen.width / 100 * 25, Screen.height / 100 * 94, 60, 20), "Send")) {
+						if (GUI.Button (new Rect (Screen.width / 100 * 25, Screen.height -49, 60, 20), "Send")) {
 								if (currentMessage.Length > 0) {
 										string temp = "[" + playername + "]: " + currentMessage;
 										this.networkView.RPC ("Chat", RPCMode.All, temp);
@@ -202,17 +204,24 @@ public class Networking : MonoBehaviour {
 						}
 						//chat log
 						int chatindex = 0;
-						foreach (string msg in chatLog) {
-								++chatindex;
-								GUI.Label (new Rect (0.0f, Screen.height - 25 - 12.5f * (chatLog.Count - chatindex), Screen.width, 25), msg);
-						}
+
+			foreach (string msg in chatLog) {
+				++chatindex;
+					GUI.Label (new Rect (0.0f, Screen.height - 72 - 12.5f * (chatLog.Count - chatindex), Screen.width, 25), msg);
+
+			}
+					GUI.Box(new Rect(0.0f, Screen.height-451 ,260, 400),"");
 
 
 			//=======================================
 			//      Enforces it to build function
 			//=======================================
 			if (gameStarted){
-				if (GUI.Button (new Rect (Screen.width / 100 * 34, Screen.height / 100, Screen.width / 100 * 15, Screen.height / 100 * 5), "", unitstyle)) 
+				//GUI.Label (new Rect (0.0f, 30.0f, 200, 25), "Gold: " + gold);
+				GUI.Box(new Rect(Screen.width-220, Screen.height/100*2, 200,300), "Gold: " + gold);
+				//Debug.Log("Gold: " + gold);
+				//GUI.Label (new Rect (Screen.width/100*20, Screen.height/100*4, (float)Screen.width/100*20, (float)Screen.height), "You WIN!");
+				if (GUI.Button (new Rect (Screen.width -180, Screen.height / 100*8, Screen.width / 100 * 15, Screen.height / 100 * 5), "", unitstyle)) 
 				{
 					//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
 					//sfx = this.audio;
@@ -225,7 +234,7 @@ public class Networking : MonoBehaviour {
 				//===========================
 				if (build == true) 
 				{
-					if (GUI.Button (new Rect (Screen.width / 100 * 36, Screen.height / 100 * 7, 80, 60), "", buildingstyle))
+					if (GUI.Button (new Rect (Screen.width -160, Screen.height / 100 * 15, 80, 60), "", buildingstyle))
 					{
 						if (gold >= BuildingPrefabs [0].GetComponent<Building> ().cost) 
 						{
@@ -236,8 +245,8 @@ public class Networking : MonoBehaviour {
 							build = false;
 							PlaySound(1);
 						}
-					} 
-					else if (Input.GetMouseButtonDown (1)) 
+					}
+					else if (Input.GetMouseButtonDown (1) || Input.GetKey(KeyCode.Escape))
 					{
 						build = false;
 						PlaySound(2);
@@ -248,7 +257,7 @@ public class Networking : MonoBehaviour {
 				//==========================
 				//    Resources Building
 				//==========================
-				if (GUI.Button (new Rect (Screen.width / 100 * 60, Screen.height / 100, Screen.width / 100 * 15, Screen.height / 100 * 5), "", resourcestyle)) 
+				if (GUI.Button (new Rect (Screen.width - 180, Screen.height / 100 * 32, Screen.width / 100 * 15, Screen.height / 100 * 5), "", resourcestyle)) 
 				{
 					//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
 					//sfx = this.audio;
@@ -261,7 +270,7 @@ public class Networking : MonoBehaviour {
 				//===========================
 				if (resource == true) 
 				{
-					if (GUI.Button (new Rect (Screen.width / 100 * 62, Screen.height / 100 * 7, 80, 60), "", resourcebuildingstyle))
+					if (GUI.Button (new Rect (Screen.width -160, Screen.height / 100 * 40, 80, 60), "", resourcebuildingstyle))
 					{
 						if (gold >= BuildingPrefabs [1].GetComponent<Building> ().cost) 
 						{
@@ -273,7 +282,7 @@ public class Networking : MonoBehaviour {
 							PlaySound(1);
 						}
 					}
-					else if (Input.GetMouseButtonDown (1)) 
+					else if (Input.GetMouseButtonDown (1) || Input.GetKey(KeyCode.Escape)) 
 					{
 						resource = false;
 						PlaySound(2);
@@ -375,7 +384,7 @@ public class Networking : MonoBehaviour {
 	IEnumerator SendJoinMessage(){
 		yield return new WaitForSeconds (0.01f);
 		if (Network.peerType == NetworkPeerType.Server) {
-			this.networkView.RPC ("Chat", RPCMode.All, "Server started");
+			this.networkView.RPC ("Chat", RPCMode.All, "");
 			Vector3 temp = playerObject.transform.position;
 			temp.x += 20;
 			//Network.Instantiate(playerObject, temp, playerObject.transform.rotation, 0);
@@ -408,8 +417,8 @@ public class Networking : MonoBehaviour {
 		void GUIWINDOWWIN (int WindowID)
 		{
 
-			GUI.Label (new Rect (Screen.width/100*20, Screen.height/100*4, (float)Screen.width/100*20, (float)Screen.height), "You WIN!");
-			if (GUI.Button (new Rect (0.0f, 90.0f, 125, 25), "Return To Main Menu"))
+			GUI.Label (new Rect (Screen.width/100*23, Screen.height/100*4, (float)Screen.width/100*20, (float)Screen.height), "You WIN!");
+		if (GUI.Button (new Rect (Screen.width/100*17, Screen.height/100*10, 150, 30), "Return To Main Menu"))
 			{
 				Network.Disconnect (200);
 				Initiate.Fade("Main Menu", Color.black, 0.5f);
@@ -417,9 +426,9 @@ public class Networking : MonoBehaviour {
 		}
 	void GUIWINDOWLOSE (int WindowID)
 		{
-			GUI.Label (new Rect (Screen.width/100*20, Screen.height/100*4, (float)Screen.width/100*20, (float)Screen.height), "You LOSE!");
+			GUI.Label (new Rect (Screen.width/100*23, Screen.height/100*4, (float)Screen.width/100*20, (float)Screen.height), "You LOSE!");
 
-			if (GUI.Button (new Rect (0.0f, 90.0f, 125, 25), "Return To Main Menu"))
+		if (GUI.Button (new Rect (Screen.width/100*17, Screen.height/100*10, 150, 30), "Return To Main Menu"))
 			{
 				Network.Disconnect (200);
 				Initiate.Fade("Main Menu", Color.black, 0.5f);
