@@ -40,14 +40,9 @@ public class Bullet : MonoBehaviour {
 			Network.Destroy(gameObject);
 		}
 	}
-	
-<<<<<<< HEAD
-	void OnTriggerEnter(Collider collider){
-		if (collider.gameObject == target) {
-=======
+
 	void OnTriggerEnter(Collider coll){
 		if (coll.gameObject == target) {
->>>>>>> 5736c08e73526ac47627dd56f2ffba741f03df5b
 			//if target is a building
 			if (target.GetComponent<Building>() != null){	
 				target.GetComponent<Building>().SendDamage(damage);
