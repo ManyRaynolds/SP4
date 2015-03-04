@@ -201,28 +201,16 @@ public class Networking : MonoBehaviour {
 							gold -= UnitBuildingPrefabs [0].GetComponent<Building> ().cost;
 							Network.Instantiate (UnitBuildingPrefabs [0], Vector3.zero, Quaternion.identity, 0);
 							build = false;
+							PlaySound(1);
 						}
 					} 
 					else if (Input.GetMouseButtonDown (1)) 
 					{
 						build = false;
-						PlaySound(1);
-						if(Input.GetMouseButtonDown(1))
-						{
-							gold += UnitBuildingPrefabs [0].GetComponent<Building> ().cost;
-							build = false;
-							PlaySound(2);
-						}
+						PlaySound(2);
 					}
-<<<<<<< HEAD
-
 				} 
-				else if (Input.GetMouseButtonDown (1)) 
-				{
-					build = false;
-					PlaySound(2);
-=======
-				}
+
 				
 				//==========================
 				//    Resources Building
@@ -234,7 +222,6 @@ public class Networking : MonoBehaviour {
 					resource = true;
 					//Debug.Log("build: " + build);
 					//audio.Play ();
->>>>>>> 73bec7e44c4f98274aea1477c35b5e45d793bba9
 				}
 				//===========================
 				//  If its in build function
@@ -250,22 +237,15 @@ public class Networking : MonoBehaviour {
 							gold -= UnitBuildingPrefabs [1].GetComponent<Building> ().cost;
 							Network.Instantiate (UnitBuildingPrefabs [1], Vector3.zero, Quaternion.identity, 0);
 							resource = false;
+							PlaySound(1);
 						}
 					}
 					else if (Input.GetMouseButtonDown (1)) 
 					{
 						resource = false;
-						PlaySound(1);
+						PlaySound(2);
 					}
 				}
-<<<<<<< HEAD
-				else if (Input.GetMouseButtonDown (1)) 
-				{
-					resource = false;
-					PlaySound(2);
-				}
-=======
->>>>>>> 73bec7e44c4f98274aea1477c35b5e45d793bba9
 			}
 			GUI.EndGroup ();
 		}

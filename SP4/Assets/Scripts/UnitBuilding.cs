@@ -73,15 +73,6 @@ public class UnitBuilding : Building {
 		//GameObject temp = unitBuildingList.Find(i => i.GetComponent<UnitBuilding>().selected == true);
 		if (networkView.isMine) {
 			if (selected == true){
-<<<<<<< HEAD
-
-					if (GUI.Button (new Rect (Screen.width-70, 10, 60, 70), "", spawnunits)) {
-
-						//Vector3 temp = this.transform.position;
-	//					temp.x -= this.transform.lossyScale.x * 3.5f;
-	//					temp.z -= this.transform.lossyScale.z * 3.5f;
-	//					Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
-=======
 				if (GUI.Button (new Rect (100, 200, 100, 200), "Spawn", spawnunits)) {
 					//Vector3 temp = this.transform.position;
 //					temp.x -= this.transform.lossyScale.x * 3.5f;
@@ -89,7 +80,6 @@ public class UnitBuilding : Building {
 //					Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
 					if (network.gold >= UnitPrefabs[0].GetComponent<Unit>().cost){
 						network.gold -= UnitPrefabs[0].GetComponent<Unit>().cost;
->>>>>>> 73bec7e44c4f98274aea1477c35b5e45d793bba9
 						AddToQueue(UnitPrefabs[0]);
 					}
 				}
