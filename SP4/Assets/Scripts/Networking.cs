@@ -72,11 +72,14 @@ public class Networking : MonoBehaviour {
 			}
 		}
 		else if (!gameStarted){	
+			bool temp = true;
 			foreach(PlayerInformation pi in playerInfoList){
-				gameStarted = true;
 				if (!pi.ready){
-					gameStarted = false;
+					temp = false;
 				}
+			}
+			if (playerInfoList.Count > 0){
+				gameStarted = temp;
 			}
 		}
 	}
