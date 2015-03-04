@@ -6,14 +6,14 @@ using System.Collections.Generic;
 
 public class Networking : MonoBehaviour {
 	
-	public bool build= false;
+	public bool build = false;
 	public bool resource = false;
 
 	public AudioClip[] AudioClipSFX;
 
 	public string ipAddress = "127.0.0.1";
 	public int port = 25167;
-	public int maxConnections = 10;
+	public int maxConnections = 2;
 
 	public GUIStyle unitstyle;
 	public GUIStyle resourcestyle;
@@ -21,8 +21,9 @@ public class Networking : MonoBehaviour {
 	public GUIStyle resourcebuildingstyle;
 
 	public GameObject[] UnitPrefabs;
-	public GameObject[] UnitBuildingPrefabs;
+	public GameObject[] BuildingPrefabs;
 
+	public GameObject[] SpawnPoints;
 
 	//public GameObject GameController;
 
@@ -48,6 +49,10 @@ public class Networking : MonoBehaviour {
 
 	public bool gameStarted = false;
 
+	public NetworkPlayer winner;
+
+	public GameObject myBase;
+
 	// Use this for initialization
 	void Start () {
 		Application.runInBackground = true;
@@ -62,6 +67,14 @@ public class Networking : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (winner != null) {
+			return;		
+		}
+		else{
+			if (myBase.GetComponent<BaseBuilding>().destroyed){
+				networkView.RPC ("UpdateWinner", RPCMode.All,Network.player);
+			}
+		}
 		if (Network.peerType == NetworkPeerType.Disconnected) {
 			chatLog.Clear();
 			currentMessage = "";
@@ -82,11 +95,24 @@ public class Networking : MonoBehaviour {
 			}
 			if (playerInfoList.Count > 0){
 				gameStarted = temp;
+				if (gameStarted){
+					if (Network.isServer){
+						myBase = Network.Instantiate(BuildingPrefabs[2], SpawnPoints[0].transform.position, Quaternion.identity, 0) as GameObject;
+						myBase.GetComponent<Building>().placing = false;
+					}
+					else if (Network.isClient){
+						myBase = Network.Instantiate(BuildingPrefabs[2], SpawnPoints[1].transform.position, Quaternion.identity, 0) as GameObject;
+						myBase.GetComponent<Building>().placing = false;
+					}
+				}
 			}
 		}
 	}
 
 	void OnGUI(){
+		if (winner != null) {
+			return;		
+		}
 				if (Network.peerType == NetworkPeerType.Disconnected) {
 						//ip text box
 						GUI.BeginGroup (new Rect (10, 10, 800, 600));
@@ -196,12 +222,12 @@ public class Networking : MonoBehaviour {
 				{
 					if (GUI.Button (new Rect (Screen.width / 100 * 36, Screen.height / 100 * 7, 80, 60), "", buildingstyle))
 					{
-						if (gold >= UnitBuildingPrefabs [0].GetComponent<Building> ().cost) 
+						if (gold >= BuildingPrefabs [0].GetComponent<Building> ().cost) 
 						{
 							//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
 							//sfx = this.audio;
-							gold -= UnitBuildingPrefabs [0].GetComponent<Building> ().cost;
-							Network.Instantiate (UnitBuildingPrefabs [0], Vector3.zero, Quaternion.identity, 0);
+							gold -= BuildingPrefabs [0].GetComponent<Building> ().cost;
+							Network.Instantiate (BuildingPrefabs [0], Vector3.zero, Quaternion.identity, 0);
 							build = false;
 							PlaySound(1);
 						}
@@ -232,12 +258,12 @@ public class Networking : MonoBehaviour {
 				{
 					if (GUI.Button (new Rect (Screen.width / 100 * 62, Screen.height / 100 * 7, 80, 60), "", resourcebuildingstyle))
 					{
-						if (gold >= UnitBuildingPrefabs [1].GetComponent<Building> ().cost) 
+						if (gold >= BuildingPrefabs [1].GetComponent<Building> ().cost) 
 						{
 							//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
 							//sfx = this.audio;
-							gold -= UnitBuildingPrefabs [1].GetComponent<Building> ().cost;
-							Network.Instantiate (UnitBuildingPrefabs [1], Vector3.zero, Quaternion.identity, 0);
+							gold -= BuildingPrefabs [1].GetComponent<Building> ().cost;
+							Network.Instantiate (BuildingPrefabs [1], Vector3.zero, Quaternion.identity, 0);
 							resource = false;
 							PlaySound(1);
 						}
@@ -325,6 +351,11 @@ public class Networking : MonoBehaviour {
 				break;
 			}
 		}
+	}
+
+	[RPC]
+	public void UpdateWinner(NetworkPlayer player){
+		winner = player;
 	}
 
 	IEnumerator SendJoinMessage(){
