@@ -10,9 +10,12 @@ public class UnitBuilding : Building {
 	public short MAX_QUEUE_LENGTH = 5;
 	
 	public GameObject[] UnitPrefabs;
-	
+
+	public Networking network;
+
 	// Use this for initialization
 	void Start () {
+		network = FindObjectOfType<Networking> ();
 	}
 	
 	// Update is called once per frame
@@ -70,19 +73,16 @@ public class UnitBuilding : Building {
 		//GameObject temp = unitBuildingList.Find(i => i.GetComponent<UnitBuilding>().selected == true);
 		if (networkView.isMine) {
 			if (selected == true){
-
-<<<<<<< HEAD
-					if (GUI.Button (new Rect (Screen.width-70, 10, 60, 70), "", spawnunits)) {
-
-=======
-					if (GUI.Button (new Rect (100, 200, 100, 200), "Spawn", spawnunits)) {
->>>>>>> 669e17dfe979d5771eb3c9ee0ab22fe312892c99
-						//Vector3 temp = this.transform.position;
-	//					temp.x -= this.transform.lossyScale.x * 3.5f;
-	//					temp.z -= this.transform.lossyScale.z * 3.5f;
-	//					Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
+				if (GUI.Button (new Rect (100, 200, 100, 200), "Spawn", spawnunits)) {
+					//Vector3 temp = this.transform.position;
+//					temp.x -= this.transform.lossyScale.x * 3.5f;
+//					temp.z -= this.transform.lossyScale.z * 3.5f;
+//					Network.Instantiate (spawnQueue[0], temp, this.transform.rotation, 0);
+					if (network.gold >= UnitPrefabs[0].GetComponent<Unit>().cost){
+						network.gold -= UnitPrefabs[0].GetComponent<Unit>().cost;
 						AddToQueue(UnitPrefabs[0]);
 					}
+				}
 				else{
 					if (!hover){
 						Event e = Event.current;

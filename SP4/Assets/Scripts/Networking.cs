@@ -44,6 +44,8 @@ public class Networking : MonoBehaviour {
 	public float goldTime = 0;
 	public int goldAmount = 0;
 
+	public bool gameStarted = false;
+
 	// Use this for initialization
 	void Start () {
 		Application.runInBackground = true;
@@ -62,11 +64,19 @@ public class Networking : MonoBehaviour {
 			chatLog.Clear();
 			currentMessage = "";
 		}
-		else{
+		else if (gameStarted){
 			goldTimer += Time.deltaTime;
 			if (goldTimer >= goldTime){
 				goldTimer -= goldTime;
 				gold += goldAmount;
+			}
+		}
+		else if (!gameStarted){	
+			foreach(PlayerInformation pi in playerInfoList){
+				gameStarted = true;
+				if (!pi.ready){
+					gameStarted = false;
+				}
 			}
 		}
 	}
@@ -103,8 +113,10 @@ public class Networking : MonoBehaviour {
 								//StartCoroutine(OnConnect ());
 						}
 						GUI.EndGroup ();
-				} else {
-						GUI.BeginGroup (new Rect (10, 10, Screen.width, Screen.height));
+		} 
+		else {
+			GUI.BeginGroup (new Rect (10, 10, Screen.width, Screen.height));
+			if (!gameStarted){
 						//disconnect button
 						if (GUI.Button (new Rect (0.0f, 0.0f, 125, 25), "Disconnect")) {
 								Network.Disconnect (200);
@@ -122,9 +134,10 @@ public class Networking : MonoBehaviour {
 						}
 
 						//ready button
-						if (GUI.Button (new Rect (0.0f, 85.0f, 125, 25), "Ready")) {
-								this.networkView.RPC ("UpdateReady", RPCMode.All, Network.player, !playerInfoList [0].ready);
-						}
+				if (GUI.Button (new Rect (0.0f, 85.0f, 125, 25), "Ready")) {
+					this.networkView.RPC ("UpdateReady", RPCMode.All, Network.player, !playerInfoList [0].ready);
+				}
+			}
 
 
 						//chat input
@@ -160,67 +173,68 @@ public class Networking : MonoBehaviour {
 			//=======================================
 			//      Enforces it to build function
 			//=======================================
-
-			if (GUI.Button (new Rect (Screen.width / 100 * 34, Screen.height / 100, Screen.width / 100 * 15, Screen.height / 100 * 5), "", unitstyle)) 
-			{
-				//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
-				//sfx = this.audio;
-				build = true;
-				//Debug.Log("build: " + build);
-				//audio.Play ();
-			}
-			//===========================
-			//  If its in build function
-			//===========================
-			if (build == true) 
-			{
-				if (GUI.Button (new Rect (Screen.width / 100 * 36, Screen.height / 100 * 7, 80, 60), "", buildingstyle))
+			if (gameStarted){
+				if (GUI.Button (new Rect (Screen.width / 100 * 34, Screen.height / 100, Screen.width / 100 * 15, Screen.height / 100 * 5), "", unitstyle)) 
 				{
-					if (gold >= UnitBuildingPrefabs [0].GetComponent<Building> ().cost) 
+					//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
+					//sfx = this.audio;
+					build = true;
+					//Debug.Log("build: " + build);
+					//audio.Play ();
+				}
+				//===========================
+				//  If its in build function
+				//===========================
+				if (build == true) 
+				{
+					if (GUI.Button (new Rect (Screen.width / 100 * 36, Screen.height / 100 * 7, 80, 60), "", buildingstyle))
 					{
-						//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
-						//sfx = this.audio;
-						gold -= UnitBuildingPrefabs [0].GetComponent<Building> ().cost;
-						Network.Instantiate (UnitBuildingPrefabs [0], Vector3.zero, Quaternion.identity, 0);
+						if (gold >= UnitBuildingPrefabs [0].GetComponent<Building> ().cost) 
+						{
+							//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
+							//sfx = this.audio;
+							gold -= UnitBuildingPrefabs [0].GetComponent<Building> ().cost;
+							Network.Instantiate (UnitBuildingPrefabs [0], Vector3.zero, Quaternion.identity, 0);
+							build = false;
+						}
+					} 
+					else if (Input.GetMouseButtonDown (1)) 
+					{
 						build = false;
 					}
-				} 
-				else if (Input.GetMouseButtonDown (1)) 
-				{
-					build = false;
 				}
-			}
-
-			//==========================
-			//    Resources Building
-			//==========================
-			if (GUI.Button (new Rect (Screen.width / 100 * 60, Screen.height / 100, Screen.width / 100 * 15, Screen.height / 100 * 5), "", resourcestyle)) 
-			{
-				//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
-				//sfx = this.audio;
-				resource = true;
-				//Debug.Log("build: " + build);
-				//audio.Play ();
-			}
-			//===========================
-			//  If its in build function
-			//===========================
-			if (resource == true) 
-			{
-				if (GUI.Button (new Rect (Screen.width / 100 * 62, Screen.height / 100 * 7, 80, 60), "", resourcebuildingstyle))
+				
+				//==========================
+				//    Resources Building
+				//==========================
+				if (GUI.Button (new Rect (Screen.width / 100 * 60, Screen.height / 100, Screen.width / 100 * 15, Screen.height / 100 * 5), "", resourcestyle)) 
 				{
-					if (gold >= UnitBuildingPrefabs [1].GetComponent<Building> ().cost) 
+					//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
+					//sfx = this.audio;
+					resource = true;
+					//Debug.Log("build: " + build);
+					//audio.Play ();
+				}
+				//===========================
+				//  If its in build function
+				//===========================
+				if (resource == true) 
+				{
+					if (GUI.Button (new Rect (Screen.width / 100 * 62, Screen.height / 100 * 7, 80, 60), "", resourcebuildingstyle))
 					{
-						//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
-						//sfx = this.audio;
-						gold -= UnitBuildingPrefabs [1].GetComponent<Building> ().cost;
-						Network.Instantiate (UnitBuildingPrefabs [1], Vector3.zero, Quaternion.identity, 0);
+						if (gold >= UnitBuildingPrefabs [1].GetComponent<Building> ().cost) 
+						{
+							//AudioClip units = AudioClip.Create ("SFX/Units", 44100, 1, 44100, false, true);
+							//sfx = this.audio;
+							gold -= UnitBuildingPrefabs [1].GetComponent<Building> ().cost;
+							Network.Instantiate (UnitBuildingPrefabs [1], Vector3.zero, Quaternion.identity, 0);
+							resource = false;
+						}
+					}
+					else if (Input.GetMouseButtonDown (1)) 
+					{
 						resource = false;
 					}
-				}
-				else if (Input.GetMouseButtonDown (1)) 
-				{
-					resource = false;
 				}
 			}
 			GUI.EndGroup ();
