@@ -39,6 +39,7 @@ public class Networking : MonoBehaviour {
 		public string name;
 		public NetworkPlayer player;
 		public bool ready;
+		public bool winner;
 	}
 	public List<PlayerInformation> playerInfoList = new List<PlayerInformation>();
 
@@ -48,8 +49,7 @@ public class Networking : MonoBehaviour {
 	public int goldAmount = 0;
 
 	public bool gameStarted = false;
-
-	public NetworkPlayer winner;
+	public bool gameOver = false;
 
 	public GameObject myBase;
 
@@ -67,13 +67,8 @@ public class Networking : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (winner != null) {
+		if (gameOver) {
 			return;		
-		}
-		else{
-			if (myBase.GetComponent<BaseBuilding>().destroyed){
-				networkView.RPC ("UpdateWinner", RPCMode.All,Network.player);
-			}
 		}
 		if (Network.peerType == NetworkPeerType.Disconnected) {
 			chatLog.Clear();
@@ -84,6 +79,9 @@ public class Networking : MonoBehaviour {
 			if (goldTimer >= goldTime){
 				goldTimer -= goldTime;
 				gold += goldAmount;
+			}
+			if (myBase.GetComponent<BaseBuilding>().destroyed){
+				networkView.RPC ("UpdateWinner", RPCMode.All,Network.player);
 			}
 		}
 		else if (!gameStarted){	
@@ -110,7 +108,13 @@ public class Networking : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		if (winner != null) {
+		if (gameOver) {
+			if (playerInfoList[0].winner){
+				
+			}
+			else{
+			
+			}
 			return;		
 		}
 				if (Network.peerType == NetworkPeerType.Disconnected) {
@@ -355,7 +359,16 @@ public class Networking : MonoBehaviour {
 
 	[RPC]
 	public void UpdateWinner(NetworkPlayer player){
-		winner = player;
+		gameOver = true;
+		for (int i = 0; i < playerInfoList.Count; ++i) {
+			if (playerInfoList[i].player == player){	
+				PlayerInformation pi = new PlayerInformation();
+				pi = playerInfoList[i];
+				pi.winner = true;
+				playerInfoList[i] = pi;
+				break;
+			}
+		}
 	}
 
 	IEnumerator SendJoinMessage(){
